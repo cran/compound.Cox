@@ -5,7 +5,8 @@
 Primary biliary cirrhosis (PBC) of the liver data
 }
 \description{
-Primary biliary cirrhosis (PBC) of the liver data. 
+A subset of primary biliary cirrhosis (PBC) of the liver data in the book "Counting Process & Survival Analysis" by Fleming & Harrington (1991).
+This subset is used in Tibshirani (1997).
 }
 \usage{data(PBC)}
 \format{
@@ -41,10 +42,10 @@ The covariates consist of a treatment indicator (trt), age, sex, 5 categorical v
  alkarine, SGOT, triglycerides, platelet count, and prothrombine). 
 }
 \source{
-Tibshirani (1997)
+Fleming & Harrignton (1991); Tibshirani (1997)
 }
 \references{
-Tibshirani R (1997), The Lasso method for variable selection in the Cox model, Statistics in Medicine, 385-395 (1997).
+Tibshirani R (1997), The Lasso method for variable selection in the Cox model, Statistics in Medicine, 385-395.
 }
 \examples{
 data(PBC)

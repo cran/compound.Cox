@@ -1,7 +1,8 @@
-3bad2bc13575b363360695c71d0ca466 *DESCRIPTION
+f283467ca0d7ab867404184d1863f9fd *DESCRIPTION
 df390c53434517b304ac5db487184641 *NAMESPACE
-e9e9cfe8bbdb94ece6551ecd91467a9e *R/compound.reg.R
+5695053ec455d3a556c2868e3e22f0ef *R/compound.Cox-internal.R
+6b18b3e7c7d6afab7d51ffea364a0eff *R/compound.reg.R
 9256435e008c18a5400a7b00bf7fe33f *data/PBC.rda
-088f0fcdc49b0bd93e06f236fc50ef3d *man/PBC.Rd
-05c1b36b66870875430007a8d2c3e5c3 *man/compound.Cox-package.Rd
-657174cbdf62a0992f36c02b1a15046d *man/compound.reg.Rd
+2c2f11ec183700fe0b7eb0f298ad2315 *man/PBC.Rd
+9ec3822a8bbaf1b21334c396225ef1e2 *man/compound.Cox-package.Rd
+338d409b7933099289a84c6d326c5a86 *man/compound.reg.Rd

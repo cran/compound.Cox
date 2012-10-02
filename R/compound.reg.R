@@ -1,10 +1,17 @@
 compound.reg <-
-function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE){
-  
+function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=FALSE,randomize=TRUE){
+
   n=length(t.vec)
   p=ncol(X.mat)
-  t.ot=t.vec[order(t.vec)]
   
+  if(randomize==TRUE){
+    rand=sample(1:n)  ### randomize the subject IDs for cross-validation ###
+    t.vec=t.vec[rand]
+    d.vec=d.vec[rand]
+    X.mat=X.mat[rand,]
+  } 
+
+  t.ot=t.vec[order(t.vec)]
   atr_t=(matrix(t.vec,n,n,byrow=TRUE)>=matrix(t.vec,n,n))
   
   l.func=function(b){
@@ -53,15 +60,23 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE){
   ### Grid search on CV ####
   a_old=a_0
   CV_old=CV_a.func(a_old)
+  CV_stock=CV_old
   repeat{
     a_new=a_old+delta_a
     CV_new=CV_a.func(a_new)
+    CV_stock=c(CV_stock,CV_new)
     if(CV_new<=CV_old){break}
     CV_old=CV_new;a_old=a_new
     if(a_old>=1){break}
   }
   a_hat=min(a_old,1)
-  
+
+  if(plot==TRUE){
+    plot(seq(a_0,a_new,length=length(CV_stock)),CV_stock,xlab="a",ylab="CV(a)",type="b")
+    if(a_hat<1){points(a_hat,CV_old,col="red",pch=17)}
+    else(points(a_hat,CV_old,col="red",pch=17))
+  }
+
   ###### Shrinkage analysis ########
   la.func=function(b){
     X.matb=X.mat%*%b   
@@ -80,7 +95,7 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE){
   V_hat=res_a$hessian/n
   
   names(beta_a)=colnames(X.mat)
-  
+ 
   ####### Variance estimation ########
   if(var==TRUE){
   b=beta_a
@@ -107,7 +122,7 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE){
   SD_beta=sqrt(  diag(V_CV)/n  )
   LCI=beta_a-1.96*SD_beta
   UCI=beta_a+1.96*SD_beta
-  list(a_hat=a_hat,beta_hat=beta_a,SE=SD_beta,Lower95CI=LCI,Upper95CI=UCI)
+  list(a_hat=a_hat,beta_hat=beta_a,SD=SD_beta,Lower95CI=LCI,Upper95CI=UCI)
   }
   else{list(a_hat=a_hat,beta_hat=beta_a)}
   
