@@ -90,14 +90,14 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=FALSE,randomiz
     as.numeric(-( a_hat*l1+(1-a_hat)*l0 ))
   }
   
-  res_a=nlm(la.func,p=rep(0,p),hessian=TRUE)
+  res_a=nlm(la.func,p=rep(0,p),hessian=var)
   beta_a=res_a$estimate
-  V_hat=res_a$hessian/n
   
   names(beta_a)=colnames(X.mat)
  
   ####### Variance estimation ########
   if(var==TRUE){
+  V_hat=res_a$hessian/n
   b=beta_a
   h_dot=rep(0,p)
   for(i in 1:n){

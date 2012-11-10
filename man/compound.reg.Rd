@@ -41,8 +41,8 @@ against the choice of the number K. If the number of covariates is greater than 
 \item{Upper95CI }{Upper ends of 95 percent confidence intervals (beta_hat+1.96*SD)}
 }
 \references{
-Emura T, Chen YH, Chen HY (2012), Survival prediction based on compound covariate method under Cox proportional hazard models,
- PLoS ONE : e46362. doi:10.1371/journal.pone.0047627
+Emura T, Chen Y-H, Chen H-Y (2012) Survival Prediction Based on Compound Covariate under Cox Proportional Hazard Models.
+ PLoS ONE 7(10): e47627. doi:10.1371/journal.pone.0047627
 }
 \author{Takeshi Emura & Yi-Hau Chen}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
