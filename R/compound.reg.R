@@ -1,5 +1,5 @@
 compound.reg <-
-function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=FALSE,randomize=TRUE){
+function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=TRUE,randomize=TRUE,var.detail=FALSE){
 
   n=length(t.vec)
   p=ncol(X.mat)
@@ -73,8 +73,8 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=FALSE,randomiz
 
   if(plot==TRUE){
     plot(seq(a_0,a_new,length=length(CV_stock)),CV_stock,xlab="a",ylab="CV(a)",type="b")
-    if(a_hat<1){points(a_hat,CV_old,col="red",pch=17)}
-    else(points(a_hat,CV_old,col="red",pch=17))
+    points(a_hat,CV_old,col="red",pch=17)
+    abline(v=a_hat,lty="dotted")
   }
 
   ###### Shrinkage analysis ########
@@ -97,32 +97,38 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=FALSE,randomiz
  
   ####### Variance estimation ########
   if(var==TRUE){
-  V_hat=res_a$hessian/n
-  b=beta_a
-  h_dot=rep(0,p)
-  for(i in 1:n){
-    if(d.vec[i]==1){
-      temp=t.vec>=t.vec[i]
-      X_at=matrix(X.mat[temp,],nrow=sum(temp))
-      S0=sum(  exp(X_at%*%b)  )
-      S1=t(X_at)%*%exp(X_at%*%b)
-      b_mat=matrix(b,sum(temp),p,byrow=TRUE)
-      S0_vec=colSums(exp(X_at*b_mat))
-      S1_vec=colSums(X_at*exp(X_at*b_mat))
-      h_dot=h_dot-S1/S0+S1_vec/S0_vec
-    } 
-  }
-  h_dot=h_dot/n
+    V_hat=res_a$hessian/n
+    b=beta_a
+    h_dot=rep(0,p)
+    for(i in 1:n){
+      if(d.vec[i]==1){
+        temp=t.vec>=t.vec[i]
+        X_at=matrix(X.mat[temp,],nrow=sum(temp))
+        S0=sum(  exp(X_at%*%b)  )
+        S1=t(X_at)%*%exp(X_at%*%b)
+        b_mat=matrix(b,sum(temp),p,byrow=TRUE)
+        S0_vec=colSums(exp(X_at*b_mat))
+        S1_vec=colSums(X_at*exp(X_at*b_mat))
+        h_dot=h_dot-S1/S0+S1_vec/S0_vec
+      } 
+    }
+    h_dot=h_dot/n
   
-  E_z=as.numeric( -hessian(CV_a.func,a_hat)/n  )
-  v_CV=t(h_dot)%*%solve(V_hat)%*%h_dot/(E_z^2)
-  A_CV=solve(V_hat)%*%(  h_dot%*%t(h_dot)  )/E_z+diag(p)
-  V_CV=A_CV%*%solve(V_hat)%*%t(A_CV)
+    dd_CV=as.numeric( hessian(CV_a.func,a_hat) )
+    E_z=-dd_CV/n
+    v_CV=t(h_dot)%*%solve(V_hat)%*%h_dot/(E_z^2)
+    A_hat=solve(V_hat)%*%(  h_dot%*%t(h_dot)  )/E_z+diag(p)
+    Sigma_hat=A_hat%*%solve(V_hat)%*%t(A_hat)
   
-  SD_beta=sqrt(  diag(V_CV)/n  )
-  LCI=beta_a-1.96*SD_beta
-  UCI=beta_a+1.96*SD_beta
-  list(a_hat=a_hat,beta_hat=beta_a,SD=SD_beta,Lower95CI=LCI,Upper95CI=UCI)
+    SD_beta=sqrt(  diag(Sigma_hat)/n  )
+    LCI=beta_a-1.96*SD_beta
+    UCI=beta_a+1.96*SD_beta
+    
+    if(var.detail==TRUE){
+      list(a_hat=a_hat,beta_hat=beta_a,SD=SD_beta,Lower95CI=LCI,Upper95CI=UCI,
+           Sigma_hat=Sigma_hat,V_hat=V_hat,Hessian_CV=dd_CV,h_dot=as.vector(h_dot))
+    }
+    else{list(a_hat=a_hat,beta_hat=beta_a,SD=SD_beta,Lower95CI=LCI,Upper95CI=UCI)}
   }
   else{list(a_hat=a_hat,beta_hat=beta_a)}
   
