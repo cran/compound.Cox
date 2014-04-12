@@ -2,7 +2,7 @@
 \alias{compound.reg}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Compound shrinkage estimation under the Cox proportional hazard model. 
+Compound shrinkage estimation under the Cox proportional hazard model 
 }
 \description{
 This function utilizes the so-called "compound shrinkage estimator" to calculate the regression coefficients
