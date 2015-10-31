@@ -39,7 +39,7 @@ maximizing the cross-validated c-index}
 }
 \references{
 Emura T and Chen YH (2014) Gene selection for survival data under dependent censoring: 
-a copula-based approach, Statistical Methods in Medical Research.
+a copula-based approach, Statistical Methods in Medical Research, doi: 10.1177/0962280214533378.
 }
 \author{Takeshi Emura}
 
@@ -61,5 +61,5 @@ dependCox.reg.CV(t.vec,d.vec,X.mat,G=10)
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
+\keyword{ dependent censoring }
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

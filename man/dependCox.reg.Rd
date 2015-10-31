@@ -5,8 +5,8 @@
 Univariate Cox regression under dependent censoring.
 }
 \description{
-This function performs the univariate Cox regression under dependent censoring based on Chen (2010).
- The dependency between the failure and censoring times is modeled via the Clayton copula.
+This function performs the univariate Cox regression under dependent censoring based on Chen (2010) and Emura and Chen (2014).
+ The association between survival time and censoring time is modeled via the Clayton copula.
 }
 \usage{
 dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE)
@@ -33,6 +33,9 @@ alpha/(alpha+2), where alpha > 0. The independent copula corresponds to alpha = 
 \references{
 Chen Y.-H., 2010. Semiparametric marginal regression analysis for dependent competing risks under an assumed copula,
  Journal of the Royal Statistical Society, Ser B 72, 235-251.
+
+Emura T and Chen YH (2014) Gene selection for survival data under dependent censoring: 
+a copula-based approach, Statistical Methods in Medical Research, doi: 10.1177/0962280214533378.
 }
 \author{Takeshi Emura}
 
@@ -67,5 +70,5 @@ beta_true
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
+\keyword{ dependent censoring }
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
