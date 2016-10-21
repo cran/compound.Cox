@@ -14,13 +14,13 @@ alpha_hat=alpha_grid[C_grid==max(C_grid)][1]
 p=ncol(X.mat)
 P_d=numeric(p)
 beta_d=numeric(p)
-SD_d=numeric(p)
+SE_d=numeric(p)
 Z_d=numeric(p)
 
 for(j in 1:p){
   res=dependCox.reg(t.vec,d.vec,X.mat[,j],alpha=alpha_hat,var=TRUE)
   beta_d[j]=res[1]
-  SD_d[j]=res[2]
+  SE_d[j]=res[2]
   Z_d[j]=res[1]/res[2]
   P_d[j]=1-pchisq(Z_d[j]^2,df=1)
 }
@@ -28,6 +28,6 @@ for(j in 1:p){
 plot(tau_grid,C_grid,xlab="Kendall's tau ( alpha )",ylab="CV( alpha )",type="b",lwd=3)
 points(tau_grid[C_grid==max(C_grid)][1],max(C_grid),col="red",pch=17,cex=2)
 
-list(beta_hat=beta_d,SD=SD_d,Z=Z_d,P=P_d,alpha=alpha_hat)
+list(beta_hat=beta_d,SE=SE_d,Z=Z_d,P=P_d,alpha=alpha_hat,c_index=max(C_grid))
 
 }

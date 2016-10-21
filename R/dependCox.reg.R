@@ -36,10 +36,10 @@ if(var==FALSE){
 else{
   res=nlm(l.func,p=dL0,hessian=var)
   beta_d=res$estimate[n+1]
-  SD=sqrt(solve(res$hessian)[n+1,n+1])
-  Z_d=beta_d/SD
+  SE=sqrt(solve(res$hessian)[n+1,n+1])
+  Z_d=beta_d/SE
   P_d=1-pchisq(Z_d^2,df=1)
-  c(beta_hat=beta_d,SD=SD,Z=Z_d,P=P_d)
+  c(beta_hat=beta_d,SE=SE,Z=Z_d,P=P_d)
 }
 
 }

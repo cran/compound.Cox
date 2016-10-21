@@ -15,8 +15,8 @@ Algorithms for simulating gene expressions in these references are also given.
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 2.0\cr
-Date: \tab 2015-10-31\cr
+Version: \tab 2.1\cr
+Date: \tab 2016-10-21\cr
 License: \tab GPL-2\cr
 }
 }
