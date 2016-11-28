@@ -37,8 +37,8 @@ Pre-filtering for covariates is recommended to reduce p.
 }
 
 \references{
-Emura T & Chen YH (2014). Gene selection for survival data under dependent censoring: 
-a copula-based approach, Statistical Methods in Medical Research, doi: 10.1177/0962280214533378.
+Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
+a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57.
 }
 \author{Takeshi Emura}
 

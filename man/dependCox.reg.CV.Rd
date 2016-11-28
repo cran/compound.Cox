@@ -39,8 +39,8 @@ maximizing the cross-validated c-index}
 \item{c_index }{Maximized value of the cross-validated c_index}
 }
 \references{
-Emura T and Chen YH (2014) Gene selection for survival data under dependent censoring: 
-a copula-based approach, Statistical Methods in Medical Research, doi: 10.1177/0962280214533378.
+Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
+a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
 }
 \author{Takeshi Emura}
 
@@ -83,7 +83,7 @@ HGF=c(1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 4, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1,
  1, 1, 2, 2, 1)
 
 X.mat=cbind(ZNF264,HGF)
-#dependCox.reg.CV(t.vec,d.vec,X.mat,G=20) 
+#dependCox.reg.CV(t.vec,d.vec,X.mat,G=20)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

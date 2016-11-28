@@ -31,11 +31,11 @@ alpha/(alpha+2), where alpha > 0. The independent copula corresponds to alpha = 
 \item{P }{P-value for testing H_0: beta=0 (Wald test)}
 }
 \references{
-Chen Y.-H., 2010. Semiparametric marginal regression analysis for dependent competing risks under an assumed copula,
- Journal of the Royal Statistical Society, Ser B 72, 235-251.
+Chen YH (2010). Semiparametric Marginal Regression Analysis for Dependent Competing Risks under an Assumed Copula,
+ JRSSB 72: 235-251.
 
-Emura T and Chen YH (2014) Gene selection for survival data under dependent censoring: 
-a copula-based approach, Statistical Methods in Medical Research, doi: 10.1177/0962280214533378.
+Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
+a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57.
 }
 \author{Takeshi Emura}
 

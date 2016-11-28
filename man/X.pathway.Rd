@@ -22,11 +22,11 @@ This deta generation scheme is also used in the simulations of Emura and Chen (2
  \item{X}{n by p matrix of gene expressions}
 }
 \references{
-Emura T, Chen Y-H, Chen H-Y (2012). Survival Prediction Based on Compound Covariate under Cox Proportional Hazard Models.
+Emura T, Chen YH, Chen HY (2012). Survival Prediction Based on Compound Covariate under Cox Proportional Hazard Models.
  PLoS ONE 7(10): e47627. doi:10.1371/journal.pone.0047627
 
-Emura T, Chen YH (2014). Gene selection for survival data under dependent censoring: 
-a copula-based approach, Statistical Methods in Medical Research, doi: 10.1177/0962280214533378.
+Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
+a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
 }
 \author{Takeshi Emura & Yi-Hau Chen}
 
