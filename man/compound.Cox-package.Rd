@@ -3,20 +3,19 @@
 \alias{compound.Cox}
 \docType{package}
 \title{
-Estimation and Gene Selection Based on the Compound Covariate Method Under the Cox Proportional Hazard Model.  
+Estimation, Gene Selection, and Survival Prediction Based on the Compound Covariate Method Under the Cox Proportional Hazard Model.  
 }
 \description{
-Calculate regression coefficients and their standard deviations under the Cox proportional hazard model with a large number of covariates.
-A shrinkage type estimation based on the compound covariate method (Emura, Chen & Chen, 2012 PLoS ONE) and a univariate gene selection method under dependent 
-censoring (Emura & Chen, 2016 Stat Methods Med Res) are implemented in this package. 
-Algorithms for simulating gene expressions in these references are also given. A subset of Lung cancer data (Chen et al. 2007) is provided.
+Estimation, gene selection, and survival prediction based on the compound covariate method under the Cox model with high-dimensional gene expressions.
+ Available are survival data for non-small-cell lung cancer patients with microarrays (Chen et al 2007 New Engl J Med),
+ statistical methods in Emura et al (2012 PLoS ONE) and Emura and Chen (2016 Stat Methods Med Res). Algorithms for generating correlated gene expressions are also available.
 }
 \details{
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.0\cr
-Date: \tab 2016-11-28\cr
+Version: \tab 3.1\cr
+Date: \tab 2017-1-9\cr
 License: \tab GPL-2\cr
 }
 }

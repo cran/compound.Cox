@@ -16,7 +16,7 @@ Cox regression analyses (Emura et al. 2016, 2017).
   \describe{
     \item{\code{t.vec}}{survival times (time to either death or censoring) in months}
     \item{\code{d.vec}}{censoring indicators, 1=death, 0=censoring}
-    \item{\code{train}}{1=training set, 0=testing set, as defined in Chen et al. (2007)}
+    \item{\code{train}}{TRUE=training set, FALSE=testing set, as defined in Chen et al. (2007)}
     \item{\code{VHL}}{gene expression, coded as 1, 2, 3, or 4}
     \item{\code{IHPK1}}{gene expression, coded as 1, 2, 3, or 4}
     \item{\code{HMMR}}{gene expression, coded as 1, 2, 3, or 4}
@@ -133,7 +133,17 @@ Emura T, Chen YH, Rondeau V (2017). Survival Analysis with Dependent Censoring a
 }
 \examples{
 data(Lung)
-Lung[1,]
+Lung[1:3,] ## show the first 3 samples ## 
+
+## The five-gene signature in Chen et al. (2007) ##
+temp=Lung[,"train"]==TRUE
+t.vec=Lung[temp,"t.vec"]
+d.vec=Lung[temp,"d.vec"]
+coxph(Surv(t.vec,d.vec)~Lung[temp,"ERBB3"])
+coxph(Surv(t.vec,d.vec)~Lung[temp,"LCK"])
+coxph(Surv(t.vec,d.vec)~Lung[temp,"DUSP6"])
+coxph(Surv(t.vec,d.vec)~Lung[temp,"STAT1"])
+coxph(Surv(t.vec,d.vec)~Lung[temp,"MMD"])
 }
 \keyword{datasets}
 \keyword{gene expression}

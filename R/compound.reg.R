@@ -120,15 +120,15 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=TRUE,randomize
     A_hat=solve(V_hat)%*%(  h_dot%*%t(h_dot)  )/E_z+diag(p)
     Sigma_hat=A_hat%*%solve(V_hat)%*%t(A_hat)
   
-    SD_beta=sqrt(  diag(Sigma_hat)/n  )
-    LCI=beta_a-1.96*SD_beta
-    UCI=beta_a+1.96*SD_beta
+    SE_beta=sqrt(  diag(Sigma_hat)/n  )
+    LCI=beta_a-1.96*SE_beta
+    UCI=beta_a+1.96*SE_beta
     
     if(var.detail==TRUE){
-      list(a_hat=a_hat,beta_hat=beta_a,SD=SD_beta,Lower95CI=LCI,Upper95CI=UCI,
+      list(a_hat=a_hat,beta_hat=beta_a,SE=SE_beta,Lower95CI=LCI,Upper95CI=UCI,
            Sigma_hat=Sigma_hat,V_hat=V_hat,Hessian_CV=dd_CV,h_dot=as.vector(h_dot))
     }
-    else{list(a_hat=a_hat,beta_hat=beta_a,SD=SD_beta,Lower95CI=LCI,Upper95CI=UCI)}
+    else{list(a_hat=a_hat,beta_hat=beta_a,SE=SE_beta,Lower95CI=LCI,Upper95CI=UCI)}
   }
   else{list(a_hat=a_hat,beta_hat=beta_a)}
   

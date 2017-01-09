@@ -10,7 +10,7 @@ function(t.vec,d.vec,alpha,S.plot=TRUE,S.col="black"){
   
   if(S.plot==TRUE){
     plot(c(0,t.sort),c(1,S),type="s",lwd=3,
-         ylim=c(0.2,1),ylab="Survival probability",xlab="Time",col=S.col)
+         ylim=c(0,1),ylab="Survival probability",xlab="Time",col=S.col)
     points(t.sort[d.sort==0],S[d.sort==0],pch=3,cex=2,col=S.col)
   }
   

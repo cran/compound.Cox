@@ -26,11 +26,11 @@ plot=TRUE, randomize = TRUE, var.detail = FALSE)
   \item{delta_a}{The step size for a grid search for the maximum of the cross-validated likelihood (default=0.025)}
   \item{a_0}{The starting value of a grid search for the maximum of the cross-validated likelihood (default=0)}
   \item{var}{If TRUE, the standard deviations and confidence intervals are given (default=FALSE, to reduce the computational cost)}
-  \item{plot}{If TRUE, draw the cross validated likelihood curve and its maximized point}
+  \item{plot}{If TRUE, the cross validated likelihood curve and its maximized point are drawn}
   \item{randomize}{If TRUE, randomize the subject ID's so that the subjects in the cross validation folds
 are randomly chosen (default=TRUE). Otherwise, the cross validation folds are constructed in the ascending sequence}
-  \item{var.detail}{Detailed information about the covariance matrix, which is mainly used for theoretical purpose. 
-Please consult the maintainer for more details (default=FALSE)}
+  \item{var.detail}{Detailed information about the covariance matrix, which is mainly used for theoretical purposes. 
+Please consult Takeshi Emura for more details (default=FALSE)}
 }
 \details{
 K=5 cross validation is recommended for computational efficiency, though the results appear to be robust
@@ -40,11 +40,11 @@ against the choice of the number K. If the number of covariates is greater than 
 \value{
 \item{a_hat }{Estimated value of the shrinkage parameter}
 \item{beta_hat }{Estimated regression coefficients}
-\item{SD }{Standard deviation for the estimated regression coefficients}
-\item{Lower95CI }{Lower ends of 95 percent confidence intervals (beta_hat-1.96*SD)}
-\item{Upper95CI }{Upper ends of 95 percent confidence intervals (beta_hat+1.96*SD)}
-\item{Sigma_hat }{Estimates of the covariance matrix for regression coefficients}
-\item{V_hat}{Estimates of the information matrix}
+\item{SE }{Standard errors for estimated regression coefficients}
+\item{Lower95CI }{Lower ends of 95 percent confidence intervals (beta_hat-1.96*SE)}
+\item{Upper95CI }{Upper ends of 95 percent confidence intervals (beta_hat+1.96*SE)}
+\item{Sigma_hat }{Covariance matrix for estimated regression coefficients}
+\item{V_hat}{Estimates of the information matrix (-[Hessian of the loglikelihood]/n)}
 \item{Hessian_CV}{Second derivative of the cross-validated likelihood. Normally negative
 since the cross-validated curve is concave}
 \item{h_dot}{Derivative of Equation (8) of Emura et al. (2012) with respect to a shrinkage parameter "a"}
@@ -84,15 +84,13 @@ res
 beta_true
 
 
-### PBC data analysis for the first 50 patients ###
-data(PBC)
-t.vec=PBC[1:50,"T"]
-d.vec=PBC[1:50,"d"]
-X.mat=as.matrix(PBC[1:50,c("trt","sex","ede","bil","cho","alb")])
-compound.reg(t.vec,d.vec,X.mat,K=5,delta_a=0.10,a_0=0,var=TRUE)
-# delta_a=0.10 is used to reduce computational time in this example #
-# in general, delta_a=0.025 (default) or delta_a=0.05 is recommended #
-
+### Lung cancer data analysis (Emura et al. 2012 PLoS ONE) ###
+data(Lung)
+temp=Lung[,"train"]==TRUE
+t.vec=Lung[temp,"t.vec"]
+d.vec=Lung[temp,"d.vec"]
+X.mat=as.matrix( Lung[temp,-c(1,2,3)] )
+#compound.reg(t.vec=t.vec,d.vec=d.vec,X.mat=X.mat,delta_a=0.025) ## take time to finish ##
 }
 
 
