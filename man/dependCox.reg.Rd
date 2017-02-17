@@ -5,7 +5,7 @@
 Univariate Cox regression under dependent censoring.
 }
 \description{
-This function performs the univariate Cox regression under dependent censoring based on Chen (2010) and Emura and Chen (2014).
+This function performs the univariate Cox regression under dependent censoring based on Chen (2010) and Emura and Chen (2016).
  The association between survival time and censoring time is modeled via the Clayton copula.
 }
 \usage{
@@ -16,7 +16,7 @@ dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE)
   \item{t.vec}{Vector of survival times (time to either death or censoring)}
   \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
   \item{X.vec}{Vector of univariate covariates}
-  \item{alpha}{Association parameter; Kendall's tau = alpha/(alpha+2)}
+  \item{alpha}{Association parameter that is related to Kendall's tau through "tau= alpha/(alpha+2)"}
   \item{var}{If TRUE, the standard deviations are given (use FALSE to reduce the computational cost)}
 }
 \details{

@@ -19,7 +19,7 @@ Correlation between columns is introduced to reflect the presence of tag genes.
 The distribution of each column is standardized to have mean=0 and SD=1.
 If two genes are correlated, the correlation is 0.5. Otherwise, the correlation is 0. 
 Details are referred to p.4 of Emura et al. (2012).
-This deta generation scheme is also used in the simulations of Emura and Chen (2014).
+This deta generation scheme was used in the simulations of Emura et al. (2012) and Emura and Chen (2016).
 }
 \value{
  \item{X}{n by p matrix of gene expressions}

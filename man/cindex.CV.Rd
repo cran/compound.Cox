@@ -9,7 +9,7 @@ predictive accuracy of a prognostic index under a copula-based dependent censori
 This function calculates the cross-validated c-index (concordance index) for measuring the 
 predictive accuracy of a prognostic index under a copula-based dependent censoring model. 
 Here the prognostic index is calculated as a compound covariate predictor based on the 
-univariate Cox regression estimates. The expression and details are given in Section 3.2 of Emura and Chen (2014). 
+univariate Cox regression estimates. The expression and details are given in Section 3.2 of Emura and Chen (2016). 
 The association between survival time and censoring time is modeled via the Clayton copula.
 }
 \usage{

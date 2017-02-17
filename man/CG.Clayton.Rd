@@ -15,7 +15,7 @@ CG.Clayton(t.vec, d.vec, alpha, S.plot = TRUE, S.col = "black")
 \arguments{
   \item{t.vec}{Vector of survival times (time to either death or censoring)}
   \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
-  \item{alpha}{Association parameter; Kendall's tau = alpha/(alpha+2)}
+  \item{alpha}{Association parameter that is related to Kendall's tau through "tau= alpha/(alpha+2)"}
   \item{S.plot}{If TRUE, plot the survival curve}
   \item{S.col}{Color of the survival curve}
 }

@@ -14,8 +14,8 @@ Estimation, gene selection, and survival prediction based on the compound covari
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.1\cr
-Date: \tab 2017-1-9\cr
+Version: \tab 3.2\cr
+Date: \tab 2017-2-17\cr
 License: \tab GPL-2\cr
 }
 }

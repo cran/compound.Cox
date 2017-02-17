@@ -8,7 +8,10 @@ Survival data for patients with non-small-cell lung cancer.
 A subset of the lung cancer data (Chen et al. 2007) is given. 
 The subset consists of 97 gene expressions from 125 patients with non-small-cell lung cancer.
 The 97 genes were selected with P-value<0.20 under univariate 
-Cox regression analyses (Emura et al. 2016, 2017).
+Cox regression analyses as previously done in Emura et al. (2012) and Emura and Chen (2016).
+The intensity of gene expression was transformed to an ordinal level using the quantile,
+ i.e. if the intensity of gene expression was <=25th, >25th, >50th, or >75th percentile, 
+it was coded as 1, 2, 3, or 4, respectively (Chen et al. 2007).
 }
 \usage{data("Lung")}
 \format{
@@ -127,9 +130,6 @@ Chen HY, Yu SL, Chen CH, et al (2007). A Five-gene Signature and Clinical Outcom
 
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
-
-Emura T, Chen YH, Rondeau V (2017). Survival Analysis with Dependent Censoring and Correlated Endpoints, Copula-Based Approaches
-( to be published in JSS Research Series in Statistics, Springer)
 }
 \examples{
 data(Lung)
