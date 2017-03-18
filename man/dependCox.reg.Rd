@@ -81,4 +81,4 @@ dependCox.reg(t.vec,d.vec,Lung[temp,"HCK"],alpha=18)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ dependent censoring }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ univariate Cox regression }% __ONLY ONE__ keyword per line

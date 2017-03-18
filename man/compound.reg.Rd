@@ -11,7 +11,7 @@ This function utilizes the so-called "compound shrinkage estimator" to calculate
  the regression coefficients are shrunken toward the univariate Cox regression estimators.
  The resultant estimator is applicable even when the number of covariates is greater than the number of
  samples (high dimensional and low sample size setting).
- The standard deviations are calculated based on the asymptotic theory (see Emura et al., 2012).    
+ The standard errors are calculated based on the asymptotic theory (see Emura et al., 2012).    
 }
 \usage{
 compound.reg(t.vec, d.vec, X.mat, K = 5, delta_a = 0.025, a_0 = 0, var = FALSE,

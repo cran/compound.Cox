@@ -59,4 +59,5 @@ cindex.CV(t.vec,d.vec,X.mat,alpha=2) ### alpha=2 corresponds to Kendall's tau=0.
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ cross-validation }
+\keyword{ c-index }
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

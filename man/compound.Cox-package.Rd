@@ -14,8 +14,8 @@ Estimation, gene selection, and survival prediction based on the compound covari
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.2\cr
-Date: \tab 2017-2-17\cr
+Version: \tab 3.3\cr
+Date: \tab 2017-3-18\cr
 License: \tab GPL-2\cr
 }
 }
@@ -25,6 +25,8 @@ Takeshi Emura, Hsuan-Yu Chen, Yi-Hau Chen;
 Maintainer: Takeshi Emura <takeshiemura@gmail.com>
 }
 \references{
+Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.
+
 Chen HY, Yu SL, Chen CH, et al (2007). A Five-gene Signature and Clinical Outcome in Non-small-cell Lung Cancer, N Engl J Med 356: 11-20.
 
 Emura T, Chen YH, Chen HY (2012). Survival Prediction Based on Compound Covariate under Cox Proportional Hazard Models.
