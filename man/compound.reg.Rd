@@ -96,5 +96,5 @@ X.mat=as.matrix( Lung[temp,-c(1,2,3)] )
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ compound covariate }
+\keyword{ shrinkage estimation }% __ONLY ONE__ keyword per line

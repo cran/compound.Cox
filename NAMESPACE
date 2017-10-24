@@ -1,5 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 import(numDeriv)
 import(survival)
-importFrom("graphics", "abline", "plot", "points")
+importFrom("graphics", "abline", "plot", "points", "par")
 importFrom("stats", "nlm", "pchisq", "runif")

@@ -63,7 +63,7 @@ for(i in 1:n){
 
 
 #dependCox.reg(t.vec,d.vec,X.vec,alpha=0)## same result as "coxph(Surv(t.vec,d.vec)~X.vec)" ##
-dependCox.reg(t.vec,d.vec,X.vec,alpha=alpha_true)## analysis under dependent censoring ##
+#dependCox.reg(t.vec,d.vec,X.vec,alpha=alpha_true)## analysis under dependent censoring ##
 dependCox.reg(t.vec,d.vec,X.vec,alpha=alpha_true,var=FALSE)## faster computation by "var=FALSE"##
 beta_true
 

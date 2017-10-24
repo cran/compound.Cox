@@ -40,7 +40,7 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5){
       
       if(sum(temp_k)==0){CC_kk.test=rep(0,length(t.vec[temp]))}else{
         beta_k=res$beta_est[temp_k]
-        X_k.test=X.mat[temp,temp_k]
+        X_k.test=as.matrix(X.mat[temp,temp_k])
         X_k.cut=as.matrix(X_k[,temp_k])
         CC_kk.test=X_k.test%*%beta_k
       }
@@ -82,10 +82,10 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5){
     c.index2=unname( survConcordance(  Surv(t.vec,d.vec)~CC.test  )$concordance )
     
     par(mfrow=c(1,2))
-    plot(CC.CV,CC.test,xlab="c-index (Fully cross-validated)",
-         ylab="c-index (Only estimation cross-validated)" )
-    plot(CC.CV,CC,xlab="c-index (Fully cross-validated)",
-         ylab="c-index (Not cross-validated)" )
+    plot(CC,CC.test,xlab="CC (Not cross-validated)",
+         ylab="CC (Fully cross-validated)" )
+    plot(CC.CV,CC.test,xlab="CC (Only estimation cross-validated)",
+         ylab="CC (Fully cross-validated)" )
     
     list(beta=beta_est[order(P)],Z=Z[order(P)],P=P[order(P)],
          c_index=c("Not cross-validated"=c.index0,"Only estimation cross-validated"=c.index1,

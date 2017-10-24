@@ -14,14 +14,14 @@ Estimation, gene selection, and survival prediction based on the compound covari
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.3\cr
-Date: \tab 2017-3-18\cr
+Version: \tab 3.4\cr
+Date: \tab 2017-10-24\cr
 License: \tab GPL-2\cr
 }
 }
 
 \author{
-Takeshi Emura, Hsuan-Yu Chen, Yi-Hau Chen;
+Takeshi Emura, Hsuan-Yu Chen, Shigeyuki Matsui, Yi-Hau Chen;
 Maintainer: Takeshi Emura <takeshiemura@gmail.com>
 }
 \references{
