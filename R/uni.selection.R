@@ -1,7 +1,9 @@
-uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5){
+uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5,score=FALSE){
   
   p=ncol(X.mat)
-  res=uni.Wald(t.vec, d.vec, X.mat) ### univariate Cox ###
+  if(score==TRUE){ res=uni.score(t.vec, d.vec, X.mat) }else{ 
+    res=uni.Wald(t.vec, d.vec, X.mat) 
+  }
   temp=res$P<P.value
   if(sum(temp)==0){warning("no gene selected; increase P.value")}else{
     
@@ -11,7 +13,8 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5){
     X.cut=as.matrix(X.mat[,temp])
     q=ncol(X.cut)
     n=length(t.vec)
-    CC=X.cut%*%beta_est
+    if(score==TRUE){ w=Z }else{ w=beta_est }
+    CC=X.cut%*%w
     c.index0=unname( survConcordance(  Surv(t.vec,d.vec)~CC  )$concordance )
     
     ##### Log-partial likelihood ######
@@ -35,33 +38,34 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5){
       X_k=X.mat[-temp,]
       n_k=length(t_k)
       
-      res=uni.Wald(t_k, d_k, X_k) ### univariate Cox ###
+      if(score==TRUE){ res=uni.score(t_k, d_k, X_k) }else{ 
+        res=uni.Wald(t_k, d_k, X_k)
+      }
       temp_k=res$P<P.value
       
       if(sum(temp_k)==0){CC_kk.test=rep(0,length(t.vec[temp]))}else{
-        beta_k=res$beta_est[temp_k]
+        if(score==TRUE){ w_k=res$Z[temp_k] }else{ w_k=res$beta_est[temp_k] }
         X_k.test=as.matrix(X.mat[temp,temp_k])
         X_k.cut=as.matrix(X_k[,temp_k])
-        CC_kk.test=X_k.test%*%beta_k
+        CC_kk.test=X_k.test%*%w_k
       }
       CC.test=c(CC.test,CC_kk.test)
 
-      ##### LCV0 (Not cross-validating) #####
+      ##### Not cross-validating #####
       res_k=coxph(Surv(t_k,d_k)~CC_k)
       CVL0=CVL0+l.func(res_k$coef)-res_k$loglik[2] 
 
-      ##### LCV1 (Cross-validating only estimation) 
-      beta_CV=rep(0,q)
-      for(j in 1:q){
-        beta_CV[j]=coxph(Surv(t_k,d_k)~X.cut[-temp,j])$coef
+      ##### Cross-validating only estimation ### 
+      if(score==TRUE){ w_CV=uni.score(t_k, d_k, X.cut[-temp,])$Z }else{ 
+        w_CV=uni.Wald(t_k, d_k, X.cut[-temp,])$beta_est
       }
-      CC.CV=c(CC.CV,X.cut[temp,]%*%as.matrix(beta_CV))
-      CC.CV_k=X.cut[-temp,]%*%as.matrix(beta_CV)
+      CC.CV=c(CC.CV,X.cut[temp,]%*%as.matrix(w_CV))
+      CC.CV_k=X.cut[-temp,]%*%as.matrix(w_CV)
       res_CV_k=coxph(Surv(t_k,d_k)~CC.CV_k)
       CVL1=CVL1+l.func(res_CV_k$coef)-res_CV_k$loglik[2] 
      
       ##### LCV2 (Cross-validating both selection and estimation) #####
-      if(is.null(beta_k)){CC_kk=rep(0,n_k)}else{CC_kk=X_k.cut%*%beta_k}
+      if(is.null(w_k)){CC_kk=rep(0,n_k)}else{CC_kk=X_k.cut%*%w_k}
       
       res_kk=coxph(Surv(t_k,d_k)~CC_kk)
       CVL2=CVL2-as.numeric(res_kk$loglik[2])
@@ -70,10 +74,8 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5){
     
     ##### LCV2 ######
     l_kk.func=function(g){
-      l1=sum( (CC.test*g)[d.vec==1] )
-      S0=sum( (log(atr_t%*%exp(CC.test*g)))[d.vec==1] )
-      l1=l1-S0
-      as.numeric( l1 )
+      l=sum( (CC.test*g)[d.vec==1] )-sum( (log(atr_t%*%exp(CC.test*g)))[d.vec==1] )
+      as.numeric( l )
     }
     for(k in 1:K){ CVL2=CVL2+l_kk.func(g_kk_vec[k]) }
     
