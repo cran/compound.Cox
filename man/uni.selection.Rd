@@ -6,7 +6,8 @@
 This function perform gene selection using the univariate Cox regression based on survival data with high-dimensional gene expressions (Matsui 2006; Emura and Chen 2016).
 }
 \usage{
-uni.selection(t.vec, d.vec, X.mat, P.value = 0.001, K = 5,score=FALSE)
+uni.selection(t.vec, d.vec, X.mat, P.value = 0.001, K = 10,
+score=FALSE,d0=0,randomize=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +17,8 @@ uni.selection(t.vec, d.vec, X.mat, P.value = 0.001, K = 5,score=FALSE)
   \item{P.value}{Threshold}
   \item{K}{The number of cross-validation folds}
   \item{score}{If TRUE, the score test is performed instead of the Wald test}
+  \item{d0}{A positive constant to stabilize the variance (Witten & Tibshirani 2010)}
+  \item{randomize}{If TRUE, randomize patient ID's before cross-validation}
 }
 \details{Predictive ability of the selected genes are evaluated throught cross-validated log-likelihood (CVL) and c-index are computed.}
 \value{
@@ -31,6 +34,8 @@ Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes
 
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
+
+Witten DM, Tibshirani R (2010) Survival analysis with high-dimensional covariates. Stat Method Med Res 19:29-51
 }
 \author{Takeshi Emura}
 \examples{

@@ -1,10 +1,9 @@
 Package: compound.Cox
 Type: Package
 Title: Estimation, Gene Selection, and Survival Prediction Based on the
-        Compound Covariate Method Under the Cox Proportional Hazard
-        Model
-Version: 3.5
-Date: 2017-11-2
+        Compound Covariate Method Under the Cox Model
+Version: 3.6
+Date: 2017-11-18
 Author: Takeshi Emura, Hsuan-Yu Chen, Shigeyuki Matsui, Yi-Hau Chen
 Maintainer: Takeshi Emura <takeshiemura@gmail.com>
 Description: Estimation, gene selection, and survival prediction based on the compound covariate method under the Cox model with high-dimensional gene expressions.
@@ -14,6 +13,6 @@ Description: Estimation, gene selection, and survival prediction based on the co
 License: GPL-2
 Depends: numDeriv, survival
 NeedsCompilation: no
-Packaged: 2017-11-02 08:57:50 UTC; user
+Packaged: 2017-11-18 10:36:43 UTC; user
 Repository: CRAN
-Date/Publication: 2017-11-02 09:01:22 UTC
+Date/Publication: 2017-11-18 10:40:50 UTC

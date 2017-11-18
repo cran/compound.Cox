@@ -1,7 +1,15 @@
-uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5,score=FALSE){
+uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,randomize=FALSE){
+  
+  n=length(t.vec)
+  if(randomize==TRUE){
+    rand=sample(1:n)  ### randomize patient IDs before cross-validation ###
+    t.vec=t.vec[rand]
+    d.vec=d.vec[rand]
+    X.mat=X.mat[rand,]
+  } 
   
   p=ncol(X.mat)
-  if(score==TRUE){ res=uni.score(t.vec, d.vec, X.mat) }else{ 
+  if(score==TRUE){ res=uni.score(t.vec, d.vec, X.mat,d0) }else{ 
     res=uni.Wald(t.vec, d.vec, X.mat) 
   }
   temp=res$P<P.value
@@ -12,7 +20,7 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5,score=FALSE){
     P=res$P[temp]
     X.cut=as.matrix(X.mat[,temp])
     q=ncol(X.cut)
-    n=length(t.vec)
+
     if(score==TRUE){ w=Z }else{ w=beta_est }
     CC=X.cut%*%w
     c.index0=unname( survConcordance(  Surv(t.vec,d.vec)~CC  )$concordance )
@@ -38,25 +46,23 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5,score=FALSE){
       X_k=X.mat[-temp,]
       n_k=length(t_k)
       
-      if(score==TRUE){ res=uni.score(t_k, d_k, X_k) }else{ 
+      if(score==TRUE){ res=uni.score(t_k, d_k, X_k,d0) }else{ 
         res=uni.Wald(t_k, d_k, X_k)
       }
       temp_k=res$P<P.value
       
-      if(sum(temp_k)==0){CC_kk.test=rep(0,length(t.vec[temp]))}else{
+      if(sum(temp_k)==0){CC_kk=rep(0,n)}else{
         if(score==TRUE){ w_k=res$Z[temp_k] }else{ w_k=res$beta_est[temp_k] }
-        X_k.test=as.matrix(X.mat[temp,temp_k])
-        X_k.cut=as.matrix(X_k[,temp_k])
-        CC_kk.test=X_k.test%*%w_k
+        CC_kk=as.matrix(X.mat[,temp_k])%*%w_k
       }
-      CC.test=c(CC.test,CC_kk.test)
+      CC.test=c(CC.test,CC_kk[temp])
 
       ##### Not cross-validating #####
       res_k=coxph(Surv(t_k,d_k)~CC_k)
       CVL0=CVL0+l.func(res_k$coef)-res_k$loglik[2] 
 
       ##### Cross-validating only estimation ### 
-      if(score==TRUE){ w_CV=uni.score(t_k, d_k, X.cut[-temp,])$Z }else{ 
+      if(score==TRUE){ w_CV=uni.score(t_k, d_k, X.cut[-temp,],d0)$Z }else{ 
         w_CV=uni.Wald(t_k, d_k, X.cut[-temp,])$beta_est
       }
       CC.CV=c(CC.CV,X.cut[temp,]%*%as.matrix(w_CV))
@@ -65,9 +71,8 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=5,score=FALSE){
       CVL1=CVL1+l.func(res_CV_k$coef)-res_CV_k$loglik[2] 
      
       ##### LCV2 (Cross-validating both selection and estimation) #####
-      if(is.null(w_k)){CC_kk=rep(0,n_k)}else{CC_kk=X_k.cut%*%w_k}
-      
-      res_kk=coxph(Surv(t_k,d_k)~CC_kk)
+      #if(is.null(w_k)){CC_kk=rep(0,n_k)}else{CC_kk=X_k.cut%*%w_k}
+      res_kk=coxph(Surv(t_k,d_k)~CC_kk[-temp])
       CVL2=CVL2-as.numeric(res_kk$loglik[2])
       g_kk_vec[k]=res_kk$coef
     }
