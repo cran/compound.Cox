@@ -25,7 +25,7 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
     CC=X.cut%*%w
     c.index0=unname( survConcordance(  Surv(t.vec,d.vec)~CC  )$concordance )
     
-    ##### Log-partial likelihood ######
+    ### Log-partial likelihood ###
     atr_t=(matrix(t.vec,n,n,byrow=TRUE)>=matrix(t.vec,n,n))
     l.func=function(g){
       l=sum( (d.vec*CC*g) )-sum( d.vec*log(atr_t%*%exp(CC*g)) )
@@ -70,19 +70,14 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
       res_CV_k=coxph(Surv(t_k,d_k)~CC.CV_k)
       CVL1=CVL1+l.func(res_CV_k$coef)-res_CV_k$loglik[2] 
      
-      ##### LCV2 (Cross-validating both selection and estimation) #####
-      #if(is.null(w_k)){CC_kk=rep(0,n_k)}else{CC_kk=X_k.cut%*%w_k}
+      ### LCV2 (Cross-validating both selection and estimation) ###
       res_kk=coxph(Surv(t_k,d_k)~CC_kk[-temp])
-      CVL2=CVL2-as.numeric(res_kk$loglik[2])
-      g_kk_vec[k]=res_kk$coef
+      l_kk.func=function(g){
+        l=sum( (CC_kk*g)[d.vec==1] )-sum( (log(atr_t%*%exp(CC_kk*g)))[d.vec==1] )
+        as.numeric( l )
+      }
+      CVL2=CVL2+l_kk.func(res_kk$coef)-as.numeric(res_kk$loglik[2])
     }
-    
-    ##### LCV2 ######
-    l_kk.func=function(g){
-      l=sum( (CC.test*g)[d.vec==1] )-sum( (log(atr_t%*%exp(CC.test*g)))[d.vec==1] )
-      as.numeric( l )
-    }
-    for(k in 1:K){ CVL2=CVL2+l_kk.func(g_kk_vec[k]) }
     
     ##### c-index (Cross-validating estimation of CC) 
     c.index1=unname( survConcordance(  Surv(t.vec,d.vec)~CC.CV  )$concordance )

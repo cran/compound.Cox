@@ -80,9 +80,8 @@ res=compound.reg(t.vec,d.vec,X.mat,delta_a=0.1)
 # delta_a=0.10 is used to reduce computational time in this example #
 # in general, delta_a=0.025 (default) or delta_a=0.05 is recommended #
 res
-#### compare the estimate (beta_hat) with the true value ###
+### compare the estimate (beta_hat) with the true value ###
 beta_true
-
 
 ### Lung cancer data analysis (Emura et al. 2012 PLoS ONE) ###
 data(Lung)
@@ -90,7 +89,7 @@ temp=Lung[,"train"]==TRUE
 t.vec=Lung[temp,"t.vec"]
 d.vec=Lung[temp,"d.vec"]
 X.mat=as.matrix( Lung[temp,-c(1,2,3)] )
-#compound.reg(t.vec=t.vec,d.vec=d.vec,X.mat=X.mat,delta_a=0.025) ## take time to finish ##
+#compound.reg(t.vec=t.vec,d.vec=d.vec,X.mat=X.mat,delta_a=0.025) # time-consuming process
 }
 
 

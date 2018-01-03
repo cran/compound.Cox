@@ -55,8 +55,7 @@ U=rexp(n) ### censoring time
 t.vec=pmin(T,U) ### minimum of survival and censoring times
 d.vec=as.numeric( c(T<=U) ) ### censoring indicator
 X.mat=matrix(runif(n*p),n,p) ### covariate matrix
-
-dependCox.reg.CV(t.vec,d.vec,X.mat,G=10)
+#dependCox.reg.CV(t.vec,d.vec,X.mat,G=10) # time-consuming process #
 
 ### Reproduce Section 5 of Emura and Chen (2016) ###
 data(Lung)
@@ -64,7 +63,7 @@ temp=Lung[,"train"]==TRUE
 t.vec=Lung[temp,"t.vec"]
 d.vec=Lung[temp,"d.vec"]
 X.mat=as.matrix(Lung[temp,-c(1,2,3)])
-#dependCox.reg.CV(t.vec,d.vec,X.mat,G=20) ### take time to finish ###
+#dependCox.reg.CV(t.vec,d.vec,X.mat,G=20) # time-consuming process #
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
