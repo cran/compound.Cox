@@ -1,9 +1,12 @@
 \name{uni.selection}
 \alias{uni.selection}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Gene selection based on the univariate Cox regression}
+\title{Univariate feature selection based on univariate significance tests}
 \description{
-This function perform gene selection using the univariate Cox regression based on survival data with high-dimensional gene expressions (Matsui 2006; Emura and Chen 2016).
+This function perform univariate feature selection using univariate significance tests, 
+where the Wald statistics or score statistics are used to measure significance. 
+Features are selected according to whether their P-values are less than a given threshold by user. 
+The cross-validated likelihood (CVL) value is computed for selected features (Matsui 2006; Emura et al. 2018).
 }
 \usage{
 uni.selection(t.vec, d.vec, X.mat, P.value = 0.001, K = 10,

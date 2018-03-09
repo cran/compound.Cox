@@ -10,7 +10,7 @@ uni.score=function(t.vec, d.vec, X.mat,d0=0){
   V=d.vec%*%(S2/S0-(S1/S0)^2)
   Z=as.vector( S/(sqrt(V)+d0) )
   P=1-pchisq(Z^2,df=1)
-  beta_est=as.vector(S/V) ## S/V is the one-step estimator
-  names(Z)=names(P)=names(beta_est)=colnames(X.mat)
-  list(beta_est=beta_est,Z=Z,P=P) 
+  Beta=as.vector(S/V) ## the one-step estimator
+  names(Z)=names(P)=names(Beta)=colnames(X.mat)
+  list(beta=Beta,Z=Z,P=P) 
 }

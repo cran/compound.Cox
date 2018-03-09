@@ -3,19 +3,21 @@
 \alias{compound.Cox}
 \docType{package}
 \title{
-Estimation, Gene Selection, and Survival Prediction Based on the Compound Covariate Method Under the Cox Proportional Hazard Model.  
+Univariate Feature Selection and Compound Covariate for Predicting Survival under the Cox Model  
 }
 \description{
-Estimation, gene selection, and survival prediction based on the compound covariate method under the Cox model with high-dimensional gene expressions.
- Available are survival data for non-small-cell lung cancer patients with microarrays (Chen et al 2007 New Engl J Med),
- statistical methods in Emura et al (2012 PLoS ONE) and Emura and Chen (2016 Stat Methods Med Res). Algorithms for generating correlated gene expressions are also available.
+Univariate feature selection and compound covariate methods under the Cox model with high-dimensional features (gene expressions).
+ Available are survival data for non-small-cell lung cancer patients with gene expressions (Chen et al 2007 New Engl J Med),
+ statistical methods in Emura et al (2012 PLoS ONE),
+ Emura & Chen (2016 Stat Methods Med Res), and Emura et al. (2018- submitted).
+ Algorithms for generating correlated gene expressions are also available.
 }
 \details{
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.7\cr
-Date: \tab 2018-1-3\cr
+Version: \tab 3.8\cr
+Date: \tab 2018-3-9\cr
 License: \tab GPL-2\cr
 }
 }
@@ -34,5 +36,7 @@ Emura T, Chen YH, Chen HY (2012). Survival Prediction Based on Compound Covariat
 
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
+
+Emura T, Matsui S, Chen HY (2018-). compound.Cox: univariate feature selection and compound covariate for predicting survival under the Cox model (submitted for publication).
 }
 \keyword{ package }

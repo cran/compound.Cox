@@ -15,13 +15,13 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
   temp=res$P<P.value
   if(sum(temp)==0){warning("no gene selected; increase P.value")}else{
     
-    beta_est=res$beta_est[temp]
+    Beta=res$beta[temp]
     Z=res$Z[temp]
     P=res$P[temp]
     X.cut=as.matrix(X.mat[,temp])
     q=ncol(X.cut)
 
-    if(score==TRUE){ w=Z }else{ w=beta_est }
+    if(score==TRUE){ w=Z }else{ w=Beta }
     CC=X.cut%*%w
     c.index0=unname( survConcordance(  Surv(t.vec,d.vec)~CC  )$concordance )
     
@@ -52,7 +52,7 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
       temp_k=res$P<P.value
       
       if(sum(temp_k)==0){CC_kk=rep(0,n)}else{
-        if(score==TRUE){ w_k=res$Z[temp_k] }else{ w_k=res$beta_est[temp_k] }
+        if(score==TRUE){ w_k=res$Z[temp_k] }else{ w_k=res$beta[temp_k] }
         CC_kk=as.matrix(X.mat[,temp_k])%*%w_k
       }
       CC.test=c(CC.test,CC_kk[temp])
@@ -63,7 +63,7 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
 
       ##### Cross-validating only estimation ### 
       if(score==TRUE){ w_CV=uni.score(t_k, d_k, X.cut[-temp,],d0)$Z }else{ 
-        w_CV=uni.Wald(t_k, d_k, X.cut[-temp,])$beta_est
+        w_CV=uni.Wald(t_k, d_k, X.cut[-temp,])$beta
       }
       CC.CV=c(CC.CV,X.cut[temp,]%*%as.matrix(w_CV))
       CC.CV_k=X.cut[-temp,]%*%as.matrix(w_CV)
@@ -89,7 +89,7 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
     plot(CC.CV,CC.test,xlab="CC (Only estimation cross-validated)",
          ylab="CC (Fully cross-validated)" )
     
-    list(beta=beta_est[order(P)],Z=Z[order(P)],P=P[order(P)],
+    list(beta=Beta[order(P)],Z=Z[order(P)],P=P[order(P)],
          c_index=c("Not cross-validated"=c.index0,"Only estimation cross-validated"=c.index1,
                "Both selection and estimation cross-validated"=c.index2),
          CVL=c("Not cross-validated"=CVL0,"Only estimation cross-validated"=CVL1,

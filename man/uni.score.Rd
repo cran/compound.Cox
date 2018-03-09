@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Univariate Cox score test}
 \description{
-Univariate Cox score test
+Univariate significance analyses based on the score tests 
 }
 \usage{
 uni.score(t.vec, d.vec, X.mat, d0=0)
@@ -17,7 +17,7 @@ uni.score(t.vec, d.vec, X.mat, d0=0)
 }
 \details{score test}
 \value{
-  \item{beta_est }{Estimated regression coefficients (one-step estimator)}
+  \item{beta }{Estimated regression coefficients (one-step estimator)}
   \item{Z }{Z-value for testing H_0: beta=0 (score test)}
   \item{P }{P-value for testing H_0: beta=0 (score test)}
 }

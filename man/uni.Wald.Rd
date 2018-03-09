@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Univariate Cox Wald test}
 \description{
-Univariate Cox Wald test
+Univariate significance analyses based on the Wald tests 
 }
 \usage{
 uni.Wald(t.vec, d.vec, X.mat)
@@ -16,7 +16,7 @@ uni.Wald(t.vec, d.vec, X.mat)
 }
 \details{Wald test}
 \value{
-  \item{beta_est }{Estimated regression coefficients}
+  \item{beta }{Estimated regression coefficients}
   \item{Z }{Z-value for testing H_0: beta=0 (Wald test)}
   \item{P }{P-value for testing H_0: beta=0 (Wald test)}
 }

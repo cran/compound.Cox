@@ -15,28 +15,28 @@ dependCox.reg.CV(t.vec, d.vec, X.mat, K = 5, G = 20)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{t.vec}{Vector of survival times (time to either death or censoring)}
-  \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
-  \item{X.mat}{n by p matrix of covariates, where n is the sample size and p is the number of covariates}
+  \item{t.vec}{A vector of survival times (time-to-death or censoring)}
+  \item{d.vec}{A vector of censoring indicators, 1=death, 0=censoring}
+  \item{X.mat}{An (n*p) matrix of covariates, where n is the sample size and p is the number of covariates}
   \item{K}{The number of cross-validation folds}
-  \item{G}{The number of grids in searching for the maximam of the cross-validated c-index}
+  \item{G}{The number of grids to optimize c-index (c-index is computed for G different values of copula parameters)}
 }
 \details{
-Currently, only the Clayton copula is implemented for association models. The Clayton model yields
-positive association between failure and censoring times with the Kendall's tau being equal to 
-alpha/(alpha+2), where alpha > 0. The independent copula corresponds to alpha = 0.
+The Clayton model yields positive association between survival time and censoring time with Kendall's tau being equal to 
+alpha/(alpha+2), where alpha > 0 is a copula parameter. The independence copula corresponds to alpha = 0. 
 
 If the number of covariates p is large (p>=100), the computational time becomes very long. 
-Pre-filtering is recommended to reduce p. 
+We suggest using "uni.selection" to reduce the number such that p<100. 
+
+If the number of grids G is large, the computational time becomes very long. Please take 5<=G<=20.
 }
 \value{
-\item{beta_hat }{Estimated regression coefficients}
-\item{SE }{Standard error for the estimated regression coefficients}
-\item{Z }{Z-value for testing H_0: beta=0 (Wald test)}
-\item{P }{P-value for testing H_0: beta=0 (Wald test)}
-\item{alpha }{Estimated association parameter for the Clayton copula by 
-maximizing the cross-validated c-index}
-\item{c_index }{Maximized value of the cross-validated c_index}
+\item{beta }{The estimated regression coefficients}
+\item{SE }{The standard errors for the estimated regression coefficients}
+\item{Z }{The Z-values for testing the null hypothesis of "beta=0" (the Wald test)}
+\item{P }{The P-values for testing the null hypothesis of "beta=0" (the Wald test)}
+\item{alpha }{The estimated copula parameter by optimizing c-index}
+\item{c_index }{The optimized value of c_index}
 }
 \references{
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
