@@ -1,6 +1,7 @@
 dependCox.reg.CV <-
 function(t.vec,d.vec,X.mat,K=5,G=20){
 
+X.mat=as.matrix(X.mat)
 ### Grid search on CV ####
 tau_grid=seq(0.0001,0.9,length=G)
 alpha_grid=2*tau_grid/(1-tau_grid)
@@ -25,6 +26,7 @@ P=1-pchisq(Z^2,df=1)
 plot(tau_grid,C_grid,xlab="Kendall's tau ( alpha )",ylab="CV( alpha )",type="b",lwd=3)
 points(tau_grid[C_grid==max(C_grid)][1],max(C_grid),col="red",pch=17,cex=2)
 
+names(Z)=names(P)=names(Beta)=names(SE)=colnames(X.mat)
 list(beta=Beta,SE=SE,Z=Z,P=P,alpha=alpha,c_index=max(C_grid))
 
 }

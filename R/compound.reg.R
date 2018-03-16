@@ -1,5 +1,5 @@
 compound.reg <-
-function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=TRUE,randomize=TRUE,var.detail=FALSE){
+function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=TRUE,randomize=FALSE,var.detail=FALSE){
 
   n=length(t.vec)
   p=ncol(X.mat)
@@ -40,7 +40,8 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=TRUE,randomize
         bmat=matrix(b,m,p,byrow=TRUE)
         X.cvb0=X.cv*bmat
         S0_vec=colSums((log(atr%*%exp(X.cvb0)))*matrix(d.cv,m,p))
-        l0=l0-sum( S0_vec ) 
+        l0=l0-sum( S0_vec )
+        a=min(a,0.99)
         as.numeric(-( a*l1+(1-a)*l0 ))
       }
       
@@ -63,11 +64,11 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=TRUE,randomize
   CV_stock=CV_old
   repeat{
     a_new=a_old+delta_a
+    if(a_new>=1){break}
     CV_new=CV_a.func(a_new)
     CV_stock=c(CV_stock,CV_new)
     if(CV_new<=CV_old){break}
     CV_old=CV_new;a_old=a_new
-    if(a_old>=1){break}
   }
   a_hat=min(a_old,1)
 
@@ -125,11 +126,11 @@ function(t.vec,d.vec,X.mat,K=5,delta_a=0.025,a_0=0,var=FALSE,plot=TRUE,randomize
     UCI=beta_a+1.96*SE_beta
     
     if(var.detail==TRUE){
-      list(a_hat=a_hat,beta_hat=beta_a,SE=SE_beta,Lower95CI=LCI,Upper95CI=UCI,
-           Sigma_hat=Sigma_hat,V_hat=V_hat,Hessian_CV=dd_CV,h_dot=as.vector(h_dot))
+      list(a=a_hat,beta=beta_a,SE=SE_beta,Lower95CI=LCI,Upper95CI=UCI,
+           Sigma=Sigma_hat,V=V_hat,Hessian_CV=dd_CV,h_dot=as.vector(h_dot))
     }
-    else{list(a_hat=a_hat,beta_hat=beta_a,SE=SE_beta,Lower95CI=LCI,Upper95CI=UCI)}
+    else{list(a=a_hat,beta=beta_a,SE=SE_beta,Lower95CI=LCI,Upper95CI=UCI)}
   }
-  else{list(a_hat=a_hat,beta_hat=beta_a)}
+  else{list(a=a_hat,beta=beta_a)}
   
 }

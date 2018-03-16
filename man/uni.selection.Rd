@@ -17,7 +17,7 @@ score=FALSE,d0=0,randomize=FALSE)
   \item{t.vec}{Vector of survival times (time to either death or censoring)}
   \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
   \item{X.mat}{n by p matrix of covariates, where n is the sample size and p is the number of covariates}
-  \item{P.value}{Threshold}
+  \item{P.value}{A threshold for selecting features}
   \item{K}{The number of cross-validation folds}
   \item{score}{If TRUE, the score test is performed instead of the Wald test}
   \item{d0}{A positive constant to stabilize the variance (Witten & Tibshirani 2010)}

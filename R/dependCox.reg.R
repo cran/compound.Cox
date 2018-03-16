@@ -31,7 +31,8 @@ dL0=c(log( c(rep(1,n1)/n,rep(1,n2)/n) ),0,0)
 
 if(var==FALSE){
   res=nlm(l.func,p=dL0,hessian=var)
-  c(beta=res$estimate[n+1])
+  Beta=res$estimate[n+1]
+  c(beta=Beta)
 }
 else{
   res=nlm(l.func,p=dL0,hessian=var)
