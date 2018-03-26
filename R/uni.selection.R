@@ -1,4 +1,4 @@
-uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,randomize=FALSE){
+uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE){
   
   n=length(t.vec)
   if(randomize==TRUE){
@@ -83,12 +83,14 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
     c.index1=unname( survConcordance(  Surv(t.vec,d.vec)~CC.CV  )$concordance )
     c.index2=unname( survConcordance(  Surv(t.vec,d.vec)~CC.test  )$concordance )
     
+    if(c.plot==TRUE){
     par(mfrow=c(1,2))
     plot(CC,CC.test,xlab="CC (Not cross-validated)",
          ylab="CC (Fully cross-validated)" )
     plot(CC.CV,CC.test,xlab="CC (Only estimation cross-validated)",
          ylab="CC (Fully cross-validated)" )
-    
+    }
+        
     list(beta=Beta[order(P)],Z=Z[order(P)],P=P[order(P)],
          c_index=c("Not cross-validated"=c.index0,"Only estimation cross-validated"=c.index1,
                "Both selection and estimation cross-validated"=c.index2),

@@ -10,7 +10,7 @@ The cross-validated likelihood (CVL) value is computed for selected features (Ma
 }
 \usage{
 uni.selection(t.vec, d.vec, X.mat, P.value = 0.001, K = 10,
-score=FALSE,d0=0,randomize=FALSE)
+score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,6 +22,7 @@ score=FALSE,d0=0,randomize=FALSE)
   \item{score}{If TRUE, the score test is performed instead of the Wald test}
   \item{d0}{A positive constant to stabilize the variance (Witten & Tibshirani 2010)}
   \item{randomize}{If TRUE, randomize patient ID's before cross-validation}
+  \item{c.plot}{If TRUE, the plot of c-index is displayed}
 }
 \details{Predictive ability of the selected genes are evaluated throught cross-validated log-likelihood (CVL) and c-index are computed.}
 \value{
