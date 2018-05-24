@@ -16,8 +16,8 @@ Univariate feature selection and compound covariate methods under the Cox model 
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.10\cr
-Date: \tab 2018-3-26\cr
+Version: \tab 3.11\cr
+Date: \tab 2018-5-24\cr
 License: \tab GPL-2\cr
 }
 }
@@ -37,6 +37,6 @@ Emura T, Chen YH, Chen HY (2012). Survival Prediction Based on Compound Covariat
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
 
-Emura T, Matsui S, Chen HY (2018-). compound.Cox: univariate feature selection and compound covariate for predicting survival (submitted for publication).
+Emura T, Matsui S, Chen HY (2018-). compound.Cox: univariate feature selection and compound covariate for predicting survival (in revision, Computer Methods and Programs in Biomedicine).
 }
 \keyword{ package }

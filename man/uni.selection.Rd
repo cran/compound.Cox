@@ -10,7 +10,7 @@ The cross-validated likelihood (CVL) value is computed for selected features (Ma
 }
 \usage{
 uni.selection(t.vec, d.vec, X.mat, P.value = 0.001, K = 10,
-score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE)
+score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE,permutation=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,6 +23,7 @@ score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE)
   \item{d0}{A positive constant to stabilize the variance (Witten & Tibshirani 2010)}
   \item{randomize}{If TRUE, randomize patient ID's before cross-validation}
   \item{c.plot}{If TRUE, the plot of c-index is displayed}
+  \item{permutation}{If TRUE, the FDR is computed by randomly permutating the gene expressions}
 }
 \details{Predictive ability of the selected genes are evaluated throught cross-validated log-likelihood (CVL) and c-index are computed.}
 \value{
@@ -32,6 +33,8 @@ score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE)
   \item{P }{P-value for testing H_0: beta=0 (Wald test)}
   \item{c_index }{c-index}
   \item{CVL }{Cross-validated partial likelihood}
+  \item{Genes }{The number of genes, the number of selected genes, and the number of falsely selected genes}
+  \item{FDR }{False Discovery Rate}
 }
 \references{
 Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.

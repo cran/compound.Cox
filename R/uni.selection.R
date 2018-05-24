@@ -1,4 +1,5 @@
-uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE){
+uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
+                       randomize=FALSE,c.plot=TRUE,permutation=FALSE){
   
   n=length(t.vec)
   if(randomize==TRUE){
@@ -90,12 +91,30 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
     plot(CC.CV,CC.test,xlab="CC (Only estimation cross-validated)",
          ylab="CC (Fully cross-validated)" )
     }
-        
+    
+    FDR.perm=f.perm=NULL
+    if(permutation==TRUE){
+      M=200
+      q.perm=numeric(M)
+      for(i in 1:M){
+        set.seed(i)
+        if(score==TRUE){ res=uni.score(t.vec, d.vec, X.mat[sample(1:n),],d0) }else{ 
+          res=uni.Wald(t.vec, d.vec, X.mat[sample(1:n),])
+        }
+        q.perm[i]=sum(res$P<P.value)
+      }
+      f.perm=mean(q.perm) ## No. of false discoveries
+      FDR.perm=f.perm/q ## False discovery rate
+    }
+    
     list(beta=Beta[order(P)],Z=Z[order(P)],P=P[order(P)],
          c_index=c("Not cross-validated"=c.index0,"Only estimation cross-validated"=c.index1,
                "Both selection and estimation cross-validated"=c.index2),
          CVL=c("Not cross-validated"=CVL0,"Only estimation cross-validated"=CVL1,
-               "Both selection and estimation cross-validated"=CVL2)
+               "Both selection and estimation cross-validated"=CVL2),
+         Genes=c("No. of genes"=p,"No. of selected genes"=q,
+                 "No. of falsely selected genes"=f.perm),
+         FDR=c("P.value * (No. of genes)"=P.value*p/q,"Permutation"=FDR.perm)
     )
   }
 
