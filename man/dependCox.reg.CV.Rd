@@ -5,7 +5,7 @@
 Cox regression under dependent censoring.
 }
 \description{
-This function perform estimation and significance testing for survival data under a copula-based dependent censoring model proposed in
+This function performs estimation and significance testing for survival data under a copula-based dependent censoring model proposed in
 Emura and Chen (2016). The dependency between the failure and censoring times is modeled via the Clayton copula.
 The method is based on the semiparametric maximum likelihood estimation, where the association parameter is estimated by maximizing
 the cross-validated c-index (see Emura and Chen 2016 for details).

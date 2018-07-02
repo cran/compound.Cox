@@ -1,4 +1,4 @@
-37564d2ea0cc3029f0dcc29b5a8a87e4 *DESCRIPTION
+75d3b7c73181c6d78b8ac53a264ba51a *DESCRIPTION
 35486eeb39956e61ef72bb457720f67b *NAMESPACE
 140472c760ab0dec4d58202c74435b63 *R/CG.Clayton.R
 560ac9ce87036557cb01b668e08e510b *R/X.pathway.R
@@ -12,15 +12,15 @@ cc84b8cf3e49e4df7ad9107008933226 *R/uni.score.R
 a28e8a7b30a16fe6c32747db47191029 *R/uni.selection.R
 392f2a7318b94e92ccdcddb3852a3fa4 *data/Lung.rda
 1ed3995672c6984d9d83511cf321807d *data/PBC.rda
-b0adf36412dcbd03312ff336f1944da3 *man/CG.Clayton.Rd
+2ba09b9feda0ede3bafb8b44b173f352 *man/CG.Clayton.Rd
 96f388a2b8d36bd710477558bb85a5a8 *man/Lung.Rd
 2c2f11ec183700fe0b7eb0f298ad2315 *man/PBC.Rd
 1a751de312b185da1ebb17c6a28a31e6 *man/X.pathway.Rd
 27a1ecadbf2edfa97e2de58101fae9bc *man/X.tag.Rd
 a0402443c47a0463d389667d50ac1ea3 *man/cindex.CV.Rd
-b98964a0ee254c0ed7ae57a86f59f0a1 *man/compound.Cox-package.Rd
+2ddc02f1d99625c2ed7e8457069f1e32 *man/compound.Cox-package.Rd
 bbb602df266b6fe5af59355b6c8b1c19 *man/compound.reg.Rd
-88dcf3910c7730049a492dd14dcf2a76 *man/dependCox.reg.CV.Rd
+3b881f8fbc70787ce32a24775660632a *man/dependCox.reg.CV.Rd
 9cc4680c81e7401a9b2189b0572d8ad6 *man/dependCox.reg.Rd
 bd8ce76a412752df27c396867886eadf *man/uni.Wald.Rd
 c3d301c4d25b2b6a04f0c245cfd86f1e *man/uni.score.Rd
