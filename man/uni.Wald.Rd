@@ -21,7 +21,10 @@ uni.Wald(t.vec, d.vec, X.mat)
   \item{P }{P-value for testing H_0: beta=0 (Wald test)}
 }
 \references{
-NA
+Witten DM, Tibshirani R (2010) Survival analysis with high-dimensional covariates. Stat Method Med Res 19:29-51
+
+Emura T, Matsui S, Chen HY (2018-). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine, in revision.
 }
 \author{Takeshi Emura and Shigeyuki Matsui}
 \examples{
@@ -36,4 +39,5 @@ uni.Wald(t.vec, d.vec, X.mat)
 % R documentation directory.
 \keyword{ univariate Cox regression }
 \keyword{ Wald test }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ compound covariate }
+\keyword{ feature selection }% __ONLY ONE__ keyword per line

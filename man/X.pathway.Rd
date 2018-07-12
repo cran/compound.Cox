@@ -44,4 +44,4 @@ round( apply(X.mat, MARGIN=2, FUN=sd),3) ## SD ~ 1 ##
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ gene expression }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ gene pathway }

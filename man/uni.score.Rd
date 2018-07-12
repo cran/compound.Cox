@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Univariate Cox score test}
 \description{
-Univariate significance analyses based on the score tests 
+Univariate significance analyses based on the score tests (Emura et al. 2018-) 
 }
 \usage{
 uni.score(t.vec, d.vec, X.mat, d0=0)
@@ -23,6 +23,9 @@ uni.score(t.vec, d.vec, X.mat, d0=0)
 }
 \references{
 Witten DM, Tibshirani R (2010) Survival analysis with high-dimensional covariates. Stat Method Med Res 19:29-51
+
+Emura T, Matsui S, Chen HY (2018-). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine, in revision.
 }
 \author{Takeshi Emura and Shigeyuki Matsui}
 \examples{
@@ -37,4 +40,5 @@ uni.score(t.vec, d.vec, X.mat)
 % R documentation directory.
 \keyword{ univariate Cox regression }
 \keyword{ score test }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ compound covariate }
+\keyword{ feature selection }% __ONLY ONE__ keyword per line

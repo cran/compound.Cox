@@ -147,3 +147,4 @@ coxph(Surv(t.vec,d.vec)~Lung[temp,"MMD"])
 }
 \keyword{datasets}
 \keyword{gene expression}
+\keyword{lung cancer}

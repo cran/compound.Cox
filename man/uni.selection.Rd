@@ -32,15 +32,15 @@ score=FALSE,d0=0,randomize=FALSE,c.plot=TRUE,permutation=FALSE)
   \item{Z }{Z-value for testing H_0: beta=0 (Wald test)}
   \item{P }{P-value for testing H_0: beta=0 (Wald test)}
   \item{c_index }{c-index}
-  \item{CVL }{Cross-validated partial likelihood}
+  \item{CVL }{Cross-validated partial likelihood (Emura et al. 2018-)}
   \item{Genes }{The number of genes, the number of selected genes, and the number of falsely selected genes}
   \item{FDR }{False Discovery Rate}
 }
 \references{
 Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.
 
-Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
-a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
+Emura T, Matsui S, Chen HY (2018-). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine, in revision.
 
 Witten DM, Tibshirani R (2010) Survival analysis with high-dimensional covariates. Stat Method Med Res 19:29-51
 }
@@ -58,5 +58,6 @@ uni.selection(t.vec, d.vec, X.mat, P.value=0.05,K=5)
 % R documentation directory.
 \keyword{ univariate Cox regression }
 \keyword{ c-index }
+\keyword{ compound covariate }
 \keyword{ cross-validated partial likelihood }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ feature selection }% __ONLY ONE__ keyword per line

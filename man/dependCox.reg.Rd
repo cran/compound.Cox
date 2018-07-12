@@ -74,4 +74,5 @@ coxph(Surv(t.vec,d.vec)~X.vec)$coef
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ dependent censoring }
+\keyword{ copula }
 \keyword{ univariate Cox regression }% __ONLY ONE__ keyword per line

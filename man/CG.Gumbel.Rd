@@ -1,31 +1,31 @@
-\name{CG.Clayton}
-\alias{CG.Clayton}
+\name{CG.Gumbel}
+\alias{CG.Gumbel}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Copula-graphic estimator under the Clayton copula.
+Copula-graphic estimator under the Gumbel copula.
 }
 \description{
-This function computes the copula-graphic (CG) estimator (Rivest & Wells 2001) under the Clayton copula. 
+This function computes the copula-graphic (CG) estimator (Rivest & Wells 2001) under the Gumbel copula. 
 }
 \usage{
-CG.Clayton(t.vec, d.vec, alpha, S.plot = TRUE, S.col = "black")
+CG.Gumbel(t.vec, d.vec, alpha, S.plot = TRUE, S.col = "black")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{t.vec}{Vector of survival times (time to either death or censoring)}
   \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
-  \item{alpha}{Association parameter that is related to Kendall's tau through "tau= alpha/(alpha+2)"}
+  \item{alpha}{Association parameter that is related to Kendall's tau through "tau= alpha/(alpha+1)"}
   \item{S.plot}{If TRUE, the survival curve is displayed}
   \item{S.col}{Color of the survival curve}
 }
 \details{
 The computational formula of the CG estimator is available in Emura & Chen (2018). 
 The outputs show the survival probabilities at given time points of "t.vec". 
-The input requires to specify an association parameter "alpha" of the Clayton copula (alpha>0), where alpha=0 corresponds to the independence copula. 
+The input requires to specify an association parameter "alpha" of the Gumbel copula (alpha>=0), where alpha=0 corresponds to the independence copula. 
 Emura and Chen (2016, 2018) applied the CG estimator to assess survival prognosis for lung cancer patients.
 }
 \value{
-\item{tau }{Kendall's tau (=alpha/(alpha+2))}
+\item{tau }{Kendall's tau (=alpha/(alpha+1))}
 \item{time }{sort(t.vec)}
 \item{surv }{survival probability at "time"}
 }
@@ -45,9 +45,9 @@ Survival Function under Dependent Censoring, J Multivar Anal; 79: 138-55.
 ## Example 1 (a toy example of n=8) ##
 t.vec=c(1,3,5,4,7,8,10,13)
 d.vec=c(1,0,0,1,1,0,1,0)
-CG.Clayton(t.vec,d.vec,alpha=18,S.col="blue")
-### CG.Clayton gives identical results with the Kaplan-Meier estimator with alpha=0 ### 
-CG.Clayton(t.vec,d.vec,alpha=0.000000001,S.plot=FALSE)$surv
+CG.Gumbel(t.vec,d.vec,alpha=9,S.col="blue")
+### CG.Gumbel gives identical results with the Kaplan-Meier estimator with alpha=0 ### 
+CG.Gumbel(t.vec,d.vec,alpha=0,S.plot=FALSE)$surv
 survfit(Surv(t.vec,d.vec)~1)$surv
 
 ## Example 2 (Analysis of the lung cancer data) ##
@@ -62,11 +62,11 @@ par(mfrow=c(1,2))
 ###### Predicted survival curves via the CG estimator #####
 t.good=t.vec[Good]
 d.good=d.vec[Good]
-CG.Clayton(t.good,d.good,alpha=18,S.plot=TRUE,S.col="blue")
+CG.Gumbel(t.good,d.good,alpha=9,S.plot=TRUE,S.col="blue")
 
 t.poor=t.vec[Poor]
 d.poor=d.vec[Poor]
-CG.Clayton(t.poor,d.poor,alpha=18,S.plot=TRUE,S.col="red")
+CG.Gumbel(t.poor,d.poor,alpha=9,S.plot=TRUE,S.col="red")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

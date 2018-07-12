@@ -1,12 +1,12 @@
-CG.Clayton <-
+CG.Gumbel <-
 function(t.vec,d.vec,alpha,S.plot=TRUE,S.col="black"){
   n=length(t.vec)
   R=n:1
   t.sort=sort(t.vec)
   d.sort=d.vec[order(t.vec)]
-  A=( (R-1)/n )^(-alpha)-(R/n)^(-alpha)
+  A=( -log((R-1)/n) )^(alpha+1)-( -log(R/n) )^(alpha+1)
   A[n]=0
-  S=( 1+cumsum(A*d.sort) )^(-1/alpha)
+  S=exp( -( cumsum(A*d.sort) )^(1/(1+alpha)) )
   
   if(S.plot==TRUE){
     plot(c(0,t.sort),c(1,S),type="s",lwd=3,
@@ -14,5 +14,5 @@ function(t.vec,d.vec,alpha,S.plot=TRUE,S.col="black"){
     points(t.sort[d.sort==0],S[d.sort==0],pch=3,cex=2,col=S.col)
   }
   
-  list( tau=alpha/(alpha+2), time=t.sort,surv=S )
+  list( tau=(alpha/(alpha+1)), time=t.sort,surv=S )
 }

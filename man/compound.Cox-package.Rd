@@ -9,15 +9,15 @@ Univariate Feature Selection and Compound Covariate for Predicting Survival
 Univariate feature selection and compound covariate methods under the Cox model with high-dimensional features (e.g., gene expressions).
  Available are survival data for non-small-cell lung cancer patients with gene expressions (Chen et al 2007 New Engl J Med),
  statistical methods in Emura et al (2012 PLoS ONE),
- Emura & Chen (2016 Stat Methods Med Res), and Emura et al. (2018- submitted).
+ Emura & Chen (2016 Stat Methods Med Res), and Emura et al. (2018- in revision).
  Algorithms for generating correlated gene expressions are also available.
 }
 \details{
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.12\cr
-Date: \tab 2018-7-2\cr
+Version: \tab 3.13\cr
+Date: \tab 2018-7-12\cr
 License: \tab GPL-2\cr
 }
 }
