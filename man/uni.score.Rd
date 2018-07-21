@@ -3,7 +3,8 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Univariate Cox score test}
 \description{
-Univariate significance analyses based on the score tests (Emura et al. 2018-) 
+Univariate significance analyses via the score tests (Witten & Tibshirani 2010; Emura et al. 2018-) based on 
+association between individual features and survival.
 }
 \usage{
 uni.score(t.vec, d.vec, X.mat, d0=0)
@@ -22,10 +23,10 @@ uni.score(t.vec, d.vec, X.mat, d0=0)
   \item{P }{P-value for testing H_0: beta=0 (score test)}
 }
 \references{
-Witten DM, Tibshirani R (2010) Survival analysis with high-dimensional covariates. Stat Method Med Res 19:29-51
-
 Emura T, Matsui S, Chen HY (2018-). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
-Computer Methods and Programs in Biomedicine, in revision.
+Computer Methods and Programs in Biomedicine, to appear.
+
+Witten DM, Tibshirani R (2010) Survival analysis with high-dimensional covariates. Stat Method Med Res 19:29-51
 }
 \author{Takeshi Emura and Shigeyuki Matsui}
 \examples{

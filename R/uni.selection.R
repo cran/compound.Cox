@@ -1,5 +1,5 @@
-uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
-                       randomize=FALSE,c.plot=TRUE,permutation=FALSE){
+uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=TRUE,d0=0,
+                       randomize=FALSE,CC.plot=FALSE,permutation=FALSE,M=200){
   
   n=length(t.vec)
   if(randomize==TRUE){
@@ -14,8 +14,8 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
     res=uni.Wald(t.vec, d.vec, X.mat) 
   }
   temp=res$P<P.value
-  if(sum(temp)==0){warning("no gene selected; increase P.value")}else{
-    
+  if(sum(temp)==0) stop("no feature is selected; please increase P.value")
+
     Beta=res$beta[temp]
     Z=res$Z[temp]
     P=res$P[temp]
@@ -35,16 +35,16 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
    
     ### Cross-validation ###
     CC.CV=CC.test=NULL
-    CVL0=CVL1=CVL2=0
+    CVL=RCVL1=RCVL2=0
     g_kk_vec=numeric(K)
     folds=cut(seq(1,n),breaks=K,labels=FALSE)
     
     for(k in 1:K){
-      temp=which(folds==k)
-      t_k=t.vec[-temp]
-      d_k=d.vec[-temp]
-      CC_k=CC[-temp]
-      X_k=X.mat[-temp,]
+      fold_k=which(folds==k)
+      t_k=t.vec[-fold_k]
+      d_k=d.vec[-fold_k]
+      CC_k=CC[-fold_k]
+      X_k=X.mat[-fold_k,]
       n_k=length(t_k)
       
       if(score==TRUE){ res=uni.score(t_k, d_k, X_k,d0) }else{ 
@@ -52,39 +52,44 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
       }
       temp_k=res$P<P.value
       
-      if(sum(temp_k)==0){CC_kk=rep(0,n)}else{
+      if(sum(temp_k)==0){
+        CC_kk=rep(0,n)
+        warning("no feature is selected in a cross-validation fold; please increase P.value")
+      }else{
         if(score==TRUE){ w_k=res$Z[temp_k] }else{ w_k=res$beta[temp_k] }
         CC_kk=as.matrix(X.mat[,temp_k])%*%w_k
       }
-      CC.test=c(CC.test,CC_kk[temp])
+      CC.test=c(CC.test,CC_kk[fold_k])
 
-      ##### Not cross-validating #####
+      ##### Resubstitution CVL (without cross-validation) #####
       res_k=coxph(Surv(t_k,d_k)~CC_k)
-      CVL0=CVL0+l.func(res_k$coef)-res_k$loglik[2] 
+      RCVL1=RCVL1+l.func(res_k$coef)-res_k$loglik[2] 
 
-      ##### Cross-validating only estimation ### 
-      if(score==TRUE){ w_CV=uni.score(t_k, d_k, X.cut[-temp,],d0)$Z }else{ 
-        w_CV=uni.Wald(t_k, d_k, X.cut[-temp,])$beta
+      ##### Resubstitution CVL (only coefficients are cross-validated) ### 
+      if(score==TRUE){ w_CV=uni.score(t_k, d_k, X.cut[-fold_k,],d0)$Z }else{ 
+        w_CV=uni.Wald(t_k, d_k, X.cut[-fold_k,])$beta
       }
-      CC.CV=c(CC.CV,X.cut[temp,]%*%as.matrix(w_CV))
-      CC.CV_k=X.cut[-temp,]%*%as.matrix(w_CV)
+      CC.CV=c(CC.CV,X.cut[fold_k,]%*%as.matrix(w_CV))
+      CC.CV_k=X.cut[-fold_k,]%*%as.matrix(w_CV)
       res_CV_k=coxph(Surv(t_k,d_k)~CC.CV_k)
-      CVL1=CVL1+l.func(res_CV_k$coef)-res_CV_k$loglik[2] 
+      RCVL2=RCVL2+l.func(res_CV_k$coef)-res_CV_k$loglik[2] 
      
-      ### LCV2 (Cross-validating both selection and estimation) ###
-      res_kk=coxph(Surv(t_k,d_k)~CC_kk[-temp])
+      ### CVL (fullly cross-validated) ###
+      res_kk=coxph(Surv(t_k,d_k)~CC_kk[-fold_k])
       l_kk.func=function(g){
         l=sum( (CC_kk*g)[d.vec==1] )-sum( (log(atr_t%*%exp(CC_kk*g)))[d.vec==1] )
         as.numeric( l )
       }
-      CVL2=CVL2+l_kk.func(res_kk$coef)-as.numeric(res_kk$loglik[2])
+      CVL=CVL+l_kk.func(res_kk$coef)-as.numeric(res_kk$loglik[2])
     }
     
     ##### c-index (Cross-validating estimation of CC) 
     c.index1=unname( survConcordance(  Surv(t.vec,d.vec)~CC.CV  )$concordance )
     c.index2=unname( survConcordance(  Surv(t.vec,d.vec)~CC.test  )$concordance )
+    c.index=c("No cross-validation"=c.index0,"Incomplete cross-validation"=c.index1,
+              "Full cross-validation"=c.index2)
     
-    if(c.plot==TRUE){
+    if(CC.plot==TRUE){
     par(mfrow=c(1,2))
     plot(CC,CC.test,xlab="CC (Not cross-validated)",
          ylab="CC (Fully cross-validated)" )
@@ -94,7 +99,6 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
     
     FDR.perm=f.perm=NULL
     if(permutation==TRUE){
-      M=200
       q.perm=numeric(M)
       for(i in 1:M){
         set.seed(i)
@@ -108,14 +112,10 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=FALSE,d0=0,
     }
     
     list(beta=Beta[order(P)],Z=Z[order(P)],P=P[order(P)],
-         c_index=c("Not cross-validated"=c.index0,"Only estimation cross-validated"=c.index1,
-               "Both selection and estimation cross-validated"=c.index2),
-         CVL=c("Not cross-validated"=CVL0,"Only estimation cross-validated"=CVL1,
-               "Both selection and estimation cross-validated"=CVL2),
+         CVL=c("CVL"=CVL,"RCVL1"=RCVL1,"RCVL2"=RCVL2),
          Genes=c("No. of genes"=p,"No. of selected genes"=q,
                  "No. of falsely selected genes"=f.perm),
          FDR=c("P.value * (No. of genes)"=P.value*p/q,"Permutation"=FDR.perm)
     )
-  }
 
 }
