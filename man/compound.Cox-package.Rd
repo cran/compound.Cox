@@ -9,15 +9,15 @@ Univariate Feature Selection and Compound Covariate for Predicting Survival
 Univariate feature selection and compound covariate methods under the Cox model with high-dimensional features (e.g., gene expressions).
  Available are survival data for non-small-cell lung cancer patients with gene expressions (Chen et al 2007 New Engl J Med),
  statistical methods in Emura et al (2012 PLoS ONE),
- Emura & Chen (2016 Stat Methods Med Res), and Emura et al. (2018- in revision).
+ Emura & Chen (2016 Stat Methods Med Res), and Emura et al. (2019 Comput Methods Programs Biomed).
  Algorithms for generating correlated gene expressions are also available.
 }
 \details{
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.14\cr
-Date: \tab 2018-7-21\cr
+Version: \tab 3.15\cr
+Date: \tab 2019-4-3\cr
 License: \tab GPL-2\cr
 }
 }
@@ -35,8 +35,8 @@ Emura T, Chen YH, Chen HY (2012). Survival Prediction Based on Compound Covariat
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
 
-Emura T, Matsui S, Chen HY (2018-). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
-Computer Methods and Programs in Biomedicine, to appear.
+Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine 168: 21-37
 
 Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.
 }

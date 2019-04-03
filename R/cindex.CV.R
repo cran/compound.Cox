@@ -16,5 +16,5 @@ function(t.vec,d.vec,X.mat,alpha,K=5){
     PI.cv[temp]=X.mat[temp,]%*%beta_a_cv
   }
   
-  survConcordance(  Surv(t.vec,d.vec)~PI.cv  )$concordance
+  1-concordance(  Surv(t.vec,d.vec)~PI.cv  )$concordance
 }

@@ -24,7 +24,7 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=TRUE,d0=0,
 
     if(score==TRUE){ w=Z }else{ w=Beta }
     CC=X.cut%*%w
-    c.index0=unname( survConcordance(  Surv(t.vec,d.vec)~CC  )$concordance )
+    c.index0=1-concordance(  Surv(t.vec,d.vec)~CC  )$concordance
     
     ### Log-partial likelihood ###
     atr_t=(matrix(t.vec,n,n,byrow=TRUE)>=matrix(t.vec,n,n))
@@ -84,8 +84,8 @@ uni.selection=function(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=TRUE,d0=0,
     }
     
     ##### c-index (Cross-validating estimation of CC) 
-    c.index1=unname( survConcordance(  Surv(t.vec,d.vec)~CC.CV  )$concordance )
-    c.index2=unname( survConcordance(  Surv(t.vec,d.vec)~CC.test  )$concordance )
+    c.index1=1-concordance(  Surv(t.vec,d.vec)~CC.CV  )$concordance
+    c.index2=1-concordance(  Surv(t.vec,d.vec)~CC.test  )$concordance
     c.index=c("No cross-validation"=c.index0,"Incomplete cross-validation"=c.index1,
               "Full cross-validation"=c.index2)
     
