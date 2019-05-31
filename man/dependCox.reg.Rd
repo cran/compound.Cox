@@ -9,7 +9,7 @@ This function performs univariate Cox regression under dependent censoring,
  where dependence between survival time and censoring time is modeled via the Clayton copula (Emura and Chen 2016).
 }
 \usage{
-dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE)
+dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE, censor.reg=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,6 +18,7 @@ dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE)
   \item{X.vec}{A vector of covariates (multiple covariates are not allowed)}
   \item{alpha}{An copula parameter (Kendall's tau = alpha/(alpha+2)}
   \item{var}{If TRUE, the standard deviations are given (use FALSE to reduce the computational cost)}
+  \item{censor.reg}{If TRUE, show the fitted results for both survival and censoring models}
 }
 \details{
 The Clayton model yields positive association between survival time and censoring time with Kendall's tau being equal to 
@@ -37,6 +38,20 @@ a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57.
 
 
 \examples{
+### Joint Cox regression of survival and censoring ### 
+data(Lung) 
+t.vec=Lung[,"t.vec"] # death or censoring times #
+d.vec=Lung[,"d.vec"] # censoring indicators #
+Gene=c("ZNF264","MMP16","HCK","IGF2","RBBP6","ERBB3","NF1","DLG2",
+       "HGF","AXL","CDC23","COX11","ENG","DUSP6","NR2F6","IHPK1")
+Beta=c(0.51,0.50,-0.49,-0.34,0.54,0.46,0.47,0.92,
+       0.50,0.77,0.51,0.51,-0.37,0.40,0.57,-0.41)
+X.vec=as.matrix(Lung[,Gene])%*%Beta 
+
+dependCox.reg(t.vec,d.vec,X.vec,alpha=0,censor.reg=TRUE)
+# same as "coxph(Surv(t.vec,d.vec)~X.vec)" and "coxph(Surv(t.vec,1-d.vec)~X.vec)"#
+dependCox.reg(t.vec,d.vec,X.vec,alpha=18,censor.reg=TRUE) #joint regression (survival + censoring)
+
 ### Reproduce Table 3 of Emura and Chen (2016) ###
 data(Lung)
 temp=Lung[,"train"]==TRUE

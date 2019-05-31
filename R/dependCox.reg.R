@@ -1,5 +1,5 @@
 dependCox.reg <-
-function(t.vec,d.vec,X.vec,alpha,var=TRUE){
+function(t.vec,d.vec,X.vec,alpha,var=TRUE,censor.reg=FALSE){
   
 alpha=max(alpha,0.01) ### prevent unstability ###
 
@@ -32,7 +32,11 @@ dL0=c(log( c(rep(1,n1)/n,rep(1,n2)/n) ),0,0)
 if(var==FALSE){
   res=nlm(l.func,p=dL0,hessian=var)
   Beta=res$estimate[n+1]
-  c(beta=Beta)
+  Res=c(beta=Beta)
+  if(censor.reg==TRUE){
+    Beta.cen=res$estimate[n+2]
+    Res=list(surv.reg=Res,censor.reg=c(beta=Beta.cen))
+  }
 }
 else{
   res=nlm(l.func,p=dL0,hessian=var)
@@ -40,7 +44,16 @@ else{
   SE=sqrt(solve(res$hessian)[n+1,n+1])
   Z=Beta/SE
   P=1-pchisq(Z^2,df=1)
-  c(beta=Beta,SE=SE,Z=Z,P=P)
+  Res=c(beta=Beta,SE=SE,Z=Z,P=P)
+  if(censor.reg==TRUE){
+    Beta.cen=res$estimate[n+2]
+    SE.cen=sqrt(solve(res$hessian)[n+2,n+2])
+    Z.cen=Beta.cen/SE.cen
+    P.cen=1-pchisq(Z.cen^2,df=1)
+    Res=list(surv.reg=Res,
+             censor.reg=c(beta=Beta.cen,SE=SE.cen,Z=Z.cen,P=P.cen))
+  }
 }
 
+Res
 }
