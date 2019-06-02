@@ -39,28 +39,23 @@ a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57.
 
 \examples{
 ### Joint Cox regression of survival and censoring ### 
-data(Lung) 
-t.vec=Lung[,"t.vec"] # death or censoring times #
-d.vec=Lung[,"d.vec"] # censoring indicators #
-Gene=c("ZNF264","MMP16","HCK","IGF2","RBBP6","ERBB3","NF1","DLG2",
-       "HGF","AXL","CDC23","COX11","ENG","DUSP6","NR2F6","IHPK1")
-Beta=c(0.51,0.50,-0.49,-0.34,0.54,0.46,0.47,0.92,
-       0.50,0.77,0.51,0.51,-0.37,0.40,0.57,-0.41)
-X.vec=as.matrix(Lung[,Gene])%*%Beta 
-
-dependCox.reg(t.vec,d.vec,X.vec,alpha=0,censor.reg=TRUE)
-# same as "coxph(Surv(t.vec,d.vec)~X.vec)" and "coxph(Surv(t.vec,1-d.vec)~X.vec)"#
-dependCox.reg(t.vec,d.vec,X.vec,alpha=18,censor.reg=TRUE) #joint regression (survival + censoring)
-
-### Reproduce Table 3 of Emura and Chen (2016) ###
 data(Lung)
-temp=Lung[,"train"]==TRUE
+t.vec=Lung[,"t.vec"]# death or censoring times #
+d.vec=Lung[,"d.vec"]# censoring indicators #
+# 16-gene prognostic index (Emura and Chen 2016; 2018) #
+X.vec=0.51*Lung[,"ZNF264"]+0.50*Lung[,"MMP16"]+
+  0.50*Lung[,"HGF"]-0.49*Lung[,"HCK"]+0.47*Lung[,"NF1"]+
+  0.46*Lung[,"ERBB3"]+0.57*Lung[,"NR2F6"]+0.77*Lung[,"AXL"]+
+  0.51*Lung[,"CDC23"]+0.92*Lung[,"DLG2"]-0.34*Lung[,"IGF2"]+
+  0.54*Lung[,"RBBP6"]+0.51*Lung[,"COX11"]+
+  0.40*Lung[,"DUSP6"]-0.37*Lung[,"ENG"]-0.41*Lung[,"IHPK1"]
+dependCox.reg(t.vec,d.vec,X.vec,alpha=18,censor.reg=TRUE)
+
+temp=c(Lung[,"train"]==TRUE)
 t.vec=Lung[temp,"t.vec"]
 d.vec=Lung[temp,"d.vec"]
-dependCox.reg(t.vec,d.vec,Lung[temp,"ZNF264"],alpha=18)
-dependCox.reg(t.vec,d.vec,Lung[temp,"MMP16"],alpha=18)
-dependCox.reg(t.vec,d.vec,Lung[temp,"HGF"],alpha=18)
-dependCox.reg(t.vec,d.vec,Lung[temp,"HCK"],alpha=18)
+dependCox.reg(t.vec,d.vec,Lung[temp,"ZNF264"],alpha=18) 
+# this reproduces Table 3 of Emura and Chen (2016) #
 
 #### A simulation study under dependent censoring ####
 beta_true=1.5 # true regression coefficient
@@ -81,7 +76,7 @@ for(i in 1:n){
 }
 
 dependCox.reg(t.vec,d.vec,X.vec,alpha=alpha_true,var=FALSE) # faster computation by "var=FALSE"
-beta_true  # the above estimate is close to the true value
+beta_true# the above estimate is close to the true value
 coxph(Surv(t.vec,d.vec)~X.vec)$coef
 # this estimate is biased for the true value due to dependent censoring 
 }
