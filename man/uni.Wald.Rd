@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Univariate Cox Wald test}
 \description{
-Univariate significance analyses via the Wald tests (Witten & Tibshirani 2010; Emura et al. 2018-) based on 
+Univariate significance analyses via the Wald tests (Witten & Tibshirani 2010; Emura et al. 2019) based on 
 association between individual features and survival. 
 }
 \usage{
@@ -22,8 +22,8 @@ uni.Wald(t.vec, d.vec, X.mat)
   \item{P }{P-value for testing H_0: beta=0 (Wald test)}
 }
 \references{
-Emura T, Matsui S, Chen HY (2018-). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
-Computer Methods and Programs in Biomedicine, to appear.
+Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine 168: 21-37.
 
 Witten DM, Tibshirani R (2010) Survival analysis with high-dimensional covariates. Stat Method Med Res 19:29-51
 }

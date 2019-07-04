@@ -5,7 +5,7 @@
 Survival data for patients with non-small-cell lung cancer.
 }
 \description{
-A subset of the lung cancer data (Chen et al. 2007) is given. 
+A subset of the lung cancer data (Chen et al. 2007) made available by Emura et al. (2019). 
 The subset consists of 97 gene expressions from 125 patients with non-small-cell lung cancer.
 The 97 genes were selected with P-value<0.20 under univariate 
 Cox regression analyses as previously done in Emura et al. (2012) and Emura and Chen (2016).
@@ -124,9 +124,15 @@ Survival data consisting of 125 patients.
 }
 \source{
 Chen HY, Yu SL, Chen CH, et al (2007). A Five-gene Signature and Clinical Outcome in Non-small-cell Lung Cancer, N Engl J Med 356: 11-20.
+
+Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine 168: 21-37.
 }
 \references{
 Chen HY, Yu SL, Chen CH, et al (2007). A Five-gene Signature and Clinical Outcome in Non-small-cell Lung Cancer, N Engl J Med 356: 11-20.
+
+Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine 168: 21-37.
 
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57

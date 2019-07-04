@@ -22,11 +22,11 @@ uni.selection(t.vec, d.vec, X.mat, P.value=0.001,K=10,score=TRUE,d0=0,
   \item{d0}{A positive constant to stabilize the variance of score statistics (Witten & Tibshirani 2010)}
   \item{randomize}{If TRUE, randomize patient ID's before cross-validation}
   \item{CC.plot}{If TRUE, the compound covariate (CC) predictors are plotted}
-  \item{permutation}{If TRUE, the FDR is computed by a permutation method (Witten & Tibshirani 2010; Emura et al. 2018).}
+  \item{permutation}{If TRUE, the FDR is computed by a permutation method (Witten & Tibshirani 2010; Emura et al. 2019).}
   \item{M}{The number of permutations to calculate the FDR}
 }
 \details{
-The cross-validated likelihood (CVL) value is computed for selected features (Matsui 2006; Emura et al. 2018-). 
+The cross-validated likelihood (CVL) value is computed for selected features (Matsui 2006; Emura et al. 2019). 
 A high CVL value corresponds to a better predictive ability of selected features. 
 Hence, the CVL value can be used to find the optimal set of features. 
 The CVL value is computed by a K-fold cross-validation, where the number K can be chosen by user. 
@@ -41,13 +41,13 @@ the CVL may be computed again after changing the sample allocation.
   \item{beta }{Estimated regression coefficients}
   \item{Z }{Z-values for significance tests}
   \item{P }{P-values for significance tests}
-  \item{CVL }{The value of CVL, RCVL1, and RCVL2 (Emura et al. 2018-)}
+  \item{CVL }{The value of CVL, RCVL1, and RCVL2 (Emura et al. 2019)}
   \item{Genes }{The number of genes, the number of selected genes, and the number of falsely selected genes}
   \item{FDR }{False discovery rate (by a formula or a permutation method)}
 }
 \references{
-Emura T, Matsui S, Chen HY (2018-). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
-Computer Methods and Programs in Biomedicine, to appear.
+Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine 168: 21-37.
 
 Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.
 

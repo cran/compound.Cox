@@ -16,11 +16,13 @@ CG.Gumbel(t.vec, d.vec, alpha, S.plot = TRUE, S.col = "black")
   \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
   \item{alpha}{Association parameter that is related to Kendall's tau through "tau= alpha/(alpha+1)"}
   \item{S.plot}{If TRUE, the survival curve is displayed}
-  \item{S.col}{Color of the survival curve}
+  \item{S.col}{Color of the survival curve in the plot}
 }
 \details{
-The computational formula of the CG estimator is available in Emura & Chen (2018). 
-The outputs show the survival probabilities at given time points of "t.vec". 
+The CG estimator is a variant of the Kaplan-Meier estimator for a survival function. 
+The CG estimator relaxes the independent censoring assumption of the KM estimator through a copula-based dependent censoring model. 
+The computational formula of the CG estimator is given in Appendix D of Emura et al. (2019). 
+The output shows the survival probabilities at given time points of "t.vec". 
 The input requires to specify an association parameter "alpha" of the Gumbel copula (alpha>=0), where alpha=0 corresponds to the independence copula. 
 Emura and Chen (2016, 2018) applied the CG estimator to assess survival prognosis for lung cancer patients.
 }
@@ -30,6 +32,9 @@ Emura and Chen (2016, 2018) applied the CG estimator to assess survival prognosi
 \item{surv }{survival probability at "time"}
 }
 \references{
+Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Computer Methods and Programs in Biomedicine 168: 21-37.
+
 Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57.
 

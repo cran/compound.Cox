@@ -1,5 +1,8 @@
 CG.Clayton <-
 function(t.vec,d.vec,alpha,S.plot=TRUE,S.col="black"){
+  
+  alpha=max(alpha,0.000000001) ### prevent unstability for small alpha ###
+  
   n=length(t.vec)
   R=n:1
   t.sort=sort(t.vec)

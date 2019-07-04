@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Univariate Cox score test}
 \description{
-Univariate significance analyses via the score tests (Witten & Tibshirani 2010; Emura et al. 2018-) based on 
+Univariate significance analyses via the score tests (Witten & Tibshirani 2010; Emura et al. 2019) based on 
 association between individual features and survival.
 }
 \usage{
