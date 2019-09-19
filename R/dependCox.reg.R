@@ -1,5 +1,6 @@
 dependCox.reg <-
-function(t.vec,d.vec,X.vec,alpha,var=TRUE,censor.reg=FALSE){
+function(t.vec,d.vec,X.vec,alpha,var=TRUE,censor.reg=FALSE,
+         baseline=FALSE){
   
 alpha=max(alpha,0.01) ### prevent unstability ###
 
@@ -52,6 +53,19 @@ else{
     P.cen=1-pchisq(Z.cen^2,df=1)
     Res=list(surv.reg=Res,
              censor.reg=c(beta=Beta.cen,SE=SE.cen,Z=Z.cen,P=P.cen))
+  }
+}
+
+if(baseline==TRUE){
+  dR1=dR2=rep(0,n)
+  dR1[d1.ot==1]=exp(res$estimate[1:n1])
+  dR2[d2.ot==1]=exp(res$estimate[(n1+1):n])
+  R1=cumsum(dR1)
+  R2=cumsum(dR2)
+  if(censor.reg!=TRUE){Res=list(surv.reg=Res,surv.baseline=R1)}
+  if(censor.reg==TRUE){
+    Res[["baseline"]]=R1
+    Res[["cen.baseline"]]=R2
   }
 }
 

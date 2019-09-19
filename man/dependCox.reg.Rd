@@ -9,7 +9,7 @@ This function performs univariate Cox regression under dependent censoring,
  where dependence between survival time and censoring time is modeled via the Clayton copula (Emura and Chen 2016).
 }
 \usage{
-dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE, censor.reg=FALSE)
+dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE, censor.reg=FALSE, baseline=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,6 +19,7 @@ dependCox.reg(t.vec, d.vec, X.vec, alpha, var = TRUE, censor.reg=FALSE)
   \item{alpha}{An copula parameter (Kendall's tau = alpha/(alpha+2)}
   \item{var}{If TRUE, the standard deviations are given (use FALSE to reduce the computational cost)}
   \item{censor.reg}{If TRUE, show the fitted results for both survival and censoring models}
+  \item{baseline}{If TRUE, show the cumulative baseline hazards at the values of "t.vec"}
 }
 \details{
 The Clayton model yields positive association between survival time and censoring time with Kendall's tau being equal to 

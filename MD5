@@ -1,4 +1,4 @@
-54195c5cdd12521982b746fbeb1fddd3 *DESCRIPTION
+f2b66015cc1344a73f5c781e4c8bc694 *DESCRIPTION
 35486eeb39956e61ef72bb457720f67b *NAMESPACE
 ae5cbc0dc2f6ebc919695e3e1ceb02be *R/CG.Clayton.R
 b85ceda02b86728a61113c239cdfe0aa *R/CG.Gumbel.R
@@ -7,7 +7,7 @@ a93ad46332a89f4d789b3b28baae3f47 *R/X.tag.R
 40fe8539d0d090e93499cffa1a1ef21f *R/cindex.CV.R
 f8b828c6cdb3196947230ae1cbb307b8 *R/compound.reg.R
 7b02ce3b1a0e93c387025734b8034326 *R/dependCox.reg.CV.R
-2165d73cfc64cb726dd5b75f0c79326a *R/dependCox.reg.R
+7fceb3ed4687eb8fc11b57d9e388dfc1 *R/dependCox.reg.R
 7d151746c9d007d385d92df10a3a8545 *R/uni.Wald.R
 cc84b8cf3e49e4df7ad9107008933226 *R/uni.score.R
 2261f44973f61014c5929c573e94fdb3 *R/uni.selection.R
@@ -20,10 +20,10 @@ c1ed9cb936f04d243322c9ade39620b5 *man/CG.Gumbel.Rd
 141e486a626f443e9cac1db0cc9164fb *man/X.pathway.Rd
 c472bf4564cb84f837df967af44a8eb6 *man/X.tag.Rd
 debdfcf182d23d81aee3d11802e88cbf *man/cindex.CV.Rd
-45e83eb97f4e73b1e31beb2b9f4ae143 *man/compound.Cox-package.Rd
+b0e4990119cc42e25d125c6bdc895a18 *man/compound.Cox-package.Rd
 bbb602df266b6fe5af59355b6c8b1c19 *man/compound.reg.Rd
 ef84c91d41a5ed98fc463a29199eae32 *man/dependCox.reg.CV.Rd
-8aa5dca213c8c5212b9fa28ccd43239f *man/dependCox.reg.Rd
+b112907c53887636eb2b4b28eb457386 *man/dependCox.reg.Rd
 382b2ae63de9901c9a8262bbb1dbc60d *man/uni.Wald.Rd
 af42e074d7eb408ff505b1a9f5091c61 *man/uni.score.Rd
 5377431c2b82ed397d2df0282b815e18 *man/uni.selection.Rd
