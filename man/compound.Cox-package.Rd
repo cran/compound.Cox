@@ -3,7 +3,7 @@
 \alias{compound.Cox}
 \docType{package}
 \title{
-Univariate Feature Selection and Compound Covariate for Predicting Survival  
+Univariate Feature Selection and Compound Covariate for Predicting Survival
 }
 \description{
 Univariate feature selection and compound covariate methods under the Cox model with high-dimensional features (e.g., gene expressions).
@@ -16,8 +16,8 @@ Univariate feature selection and compound covariate methods under the Cox model 
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.19\cr
-Date: \tab 2019-9-19\cr
+Version: \tab 3.20\cr
+Date: \tab 2020-7-4\cr
 License: \tab GPL-2\cr
 }
 }
@@ -32,10 +32,10 @@ Chen HY, Yu SL, Chen CH, et al (2007). A Five-gene Signature and Clinical Outcom
 Emura T, Chen YH, Chen HY (2012). Survival Prediction Based on Compound Covariate under Cox Proportional Hazard Models.
  PLoS ONE 7(10): e47627. doi:10.1371/journal.pone.0047627
 
-Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring: 
+Emura T, Chen YH (2016). Gene Selection for Survival Data Under Dependent Censoring:
 a Copula-based Approach, Stat Methods Med Res 25(No.6): 2840-57
 
-Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival, 
+Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival,
 Computer Methods and Programs in Biomedicine 168: 21-37
 
 Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.

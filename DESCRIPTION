@@ -2,8 +2,8 @@ Package: compound.Cox
 Type: Package
 Title: Univariate Feature Selection and Compound Covariate for
         Predicting Survival
-Version: 3.19
-Date: 2019-9-19
+Version: 3.20
+Date: 2020-7-4
 Author: Takeshi Emura, Hsuan-Yu Chen, Shigeyuki Matsui, Yi-Hau Chen
 Maintainer: Takeshi Emura <takeshiemura@gmail.com>
 Description: Univariate feature selection and compound covariate methods under the Cox model with high-dimensional features (e.g., gene expressions).
@@ -13,7 +13,9 @@ Description: Univariate feature selection and compound covariate methods under t
  Algorithms for generating correlated gene expressions are also available.
 License: GPL-2
 Depends: numDeriv, survival
+Encoding: UTF-8
+RoxygenNote: 7.1.0
 NeedsCompilation: no
-Packaged: 2019-09-19 12:37:20 UTC; user
+Packaged: 2020-07-04 08:19:22 UTC; user
 Repository: CRAN
-Date/Publication: 2019-09-19 12:40:06 UTC
+Date/Publication: 2020-07-04 23:10:03 UTC
