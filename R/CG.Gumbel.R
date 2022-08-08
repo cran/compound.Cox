@@ -7,12 +7,12 @@ function(t.vec,d.vec,alpha,S.plot=TRUE,S.col="black"){
   A=( -log((R-1)/n) )^(alpha+1)-( -log(R/n) )^(alpha+1)
   A[n]=0
   S=exp( -( cumsum(A*d.sort) )^(1/(1+alpha)) )
-  
+
   if(S.plot==TRUE){
     plot(c(0,t.sort),c(1,S),type="s",lwd=3,
          ylim=c(0,1),ylab="Survival probability",xlab="Time",col=S.col)
     points(t.sort[d.sort==0],S[d.sort==0],pch=3,cex=2,col=S.col)
   }
-  
-  list( tau=(alpha/(alpha+1)), time=t.sort,surv=S )
+
+  list( tau=(alpha/(alpha+1)), time=t.sort, n.risk=R, surv=S )
 }

@@ -29,6 +29,7 @@ Emura and Chen (2016, 2018) applied the CG estimator to assess survival prognosi
 \value{
 \item{tau }{Kendall's tau (=alpha/(alpha+2))}
 \item{time }{sort(t.vec)}
+\item{n.risk }{the number of patients at-risk}
 \item{surv }{survival probability at "time"}
 }
 \references{
