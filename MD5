@@ -1,5 +1,5 @@
-65b78e8225f347cd40a87dc8363a940c *DESCRIPTION
-979dda3601c25e7cd29f149009965432 *NAMESPACE
+420b1dd1004f1c313747a2d0ec9f3528 *DESCRIPTION
+9101d9af9638ae467c3e7faa3ca33fa7 *NAMESPACE
 551f835dc1dd58a754ec34eed7b19169 *R/CG.Clayton.R
 f5af78ae4b2b74eec63a5fd2d6735c9b *R/CG.Frank.R
 cb54bd7276c5298ca96f0697bc8e550e *R/CG.Gumbel.R
@@ -9,6 +9,7 @@ a93ad46332a89f4d789b3b28baae3f47 *R/X.tag.R
 f8b828c6cdb3196947230ae1cbb307b8 *R/compound.reg.R
 7b02ce3b1a0e93c387025734b8034326 *R/dependCox.reg.CV.R
 7fceb3ed4687eb8fc11b57d9e388dfc1 *R/dependCox.reg.R
+d527d3805b717a71f991f9a5aff223e5 *R/surv.factorial.R
 7d151746c9d007d385d92df10a3a8545 *R/uni.Wald.R
 cc84b8cf3e49e4df7ad9107008933226 *R/uni.score.R
 2261f44973f61014c5929c573e94fdb3 *R/uni.selection.R
@@ -26,6 +27,7 @@ d9ad1ede6151124cb7e51ff10395a5a3 *man/compound.Cox-package.Rd
 bbb602df266b6fe5af59355b6c8b1c19 *man/compound.reg.Rd
 ef84c91d41a5ed98fc463a29199eae32 *man/dependCox.reg.CV.Rd
 b112907c53887636eb2b4b28eb457386 *man/dependCox.reg.Rd
+00c3cbc34f55f7d66f926e3d9deb7535 *man/surv.factorial.Rd
 382b2ae63de9901c9a8262bbb1dbc60d *man/uni.Wald.Rd
 af42e074d7eb408ff505b1a9f5091c61 *man/uni.score.Rd
 5377431c2b82ed397d2df0282b815e18 *man/uni.selection.Rd
