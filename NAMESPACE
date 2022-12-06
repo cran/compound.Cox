@@ -2,6 +2,6 @@ exportPattern("^[[:alpha:]]+")
 import(numDeriv)
 import(survival)
 import(MASS)
-importFrom("graphics", "abline", "plot", "points", "par")
+importFrom("graphics", "abline", "plot", "points", "par", "legend", "text")
 importFrom("stats","cov", "nlm", "pchisq", "runif", "integrate",
            "pnorm", "qchisq", "qnorm", "rchisq")

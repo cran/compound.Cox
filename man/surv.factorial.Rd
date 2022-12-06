@@ -17,7 +17,7 @@ surv.factorial(t.vec,d.vec,group,alpha,copula,t.upper=max(t.vec),C=NULL,S.plot=T
   \item{group}{Vector of group indicators, 1, 2, ..., d}
   \item{alpha}{Copula parameter}
   \item{copula}{Copula function: "CG.Clayton","CG.Gumbel" or "CG.Frank"}
-  \item{t.upper}{Follow-up end}
+  \item{t.upper}{Follow-up end (default is max(t.vec))}
   \item{C}{Contrast matrix}
   \item{S.plot}{If TRUE, the survival curve is displayed}
 }
@@ -27,7 +27,7 @@ Estimates of treatment effects and the test results are shown.
 \value{
 \item{copula.parameter}{Copula parameter}
 \item{p}{Estimates of treatment effects}
-\item{Var}{VAriance estimates}
+\item{Var}{Variance estimates}
 \item{c_simulated}{Critical value via simulation method}
 \item{c_analytical}{Critical value via analytical method}
 }

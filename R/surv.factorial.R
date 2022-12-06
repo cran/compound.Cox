@@ -56,6 +56,9 @@ surv.factorial=function(t.vec,d.vec,group,alpha,copula,
   if(S.plot==TRUE){
     plot(survfit(Surv(t.vec,d.vec)~group),col=1:d,
          xlab="Time",ylab="Survival probability")
+    abline(v=t.upper,lty="dotted")
+    legend("topright",legend=1:d,lty=1,col=1:d,bty="n")
+    text(0.95*t.upper,0.01,expression(tau))
   }
 
   ### ANOVA test ###
