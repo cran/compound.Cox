@@ -5,10 +5,11 @@
 Factorial survival analysis under dependent censoring
 }
 \description{
-Perform factorial survival analysis under dependent censoring under an assumed copula.
+Perform factorial survival analysis under dependent censoring under an assumed copula (Emura et al. 2023-).
 }
 \usage{
-surv.factorial(t.vec,d.vec,group,alpha,copula,t.upper=max(t.vec),C=NULL,S.plot=TRUE)
+surv.factorial(t.vec,d.vec,group,alpha,copula,t.upper=min(tapply(t.vec,group,max)),
+C=NULL,S.plot=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -32,6 +33,8 @@ Estimates of treatment effects and the test results are shown.
 \item{c_analytical}{Critical value via analytical method}
 }
 \references{
+Emura T, Ditzhaus M, Dobler D (2023-), Factorial survival analysis for treatment effects under dependent censoring, in preparation.
+
 Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival,
 Computer Methods and Programs in Biomedicine 168: 21-37.
 

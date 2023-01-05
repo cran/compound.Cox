@@ -1,5 +1,6 @@
 surv.factorial=function(t.vec,d.vec,group,alpha,copula,
-                    t.upper=max(t.vec),C=NULL,S.plot=TRUE){
+                    t.upper=min(tapply(t.vec,group,max)),
+                    C=NULL,S.plot=TRUE){
 
   d=length(levels(factor(group)))
   group=as.factor(group)
