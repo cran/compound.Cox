@@ -8,8 +8,8 @@ Factorial survival analysis under dependent censoring
 Perform factorial survival analysis under dependent censoring under an assumed copula (Emura et al. 2023-).
 }
 \usage{
-surv.factorial(t.vec,d.vec,group,alpha,copula,t.upper=min(tapply(t.vec,group,max)),
-C=NULL,S.plot=TRUE)
+surv.factorial(t.vec,d.vec,group,alpha,copula,R=1000,t.upper=min(tapply(t.vec,group,max)),
+C=NULL,S.plot=TRUE,mark.time=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,9 +18,11 @@ C=NULL,S.plot=TRUE)
   \item{group}{Vector of group indicators, 1, 2, ..., d}
   \item{alpha}{Copula parameter}
   \item{copula}{Copula function: "CG.Clayton","CG.Gumbel" or "CG.Frank"}
+  \item{R}{The number of Monte Carlo simulations to find the critical value of the F-test}
   \item{t.upper}{Follow-up end (default is max(t.vec))}
   \item{C}{Contrast matrix}
   \item{S.plot}{If TRUE, the survival curve is displayed}
+  \item{mark.time}{If TRUE, then curves are marked at each censoring time}
 }
 \details{
 Estimates of treatment effects and the test results are shown.
@@ -29,8 +31,10 @@ Estimates of treatment effects and the test results are shown.
 \item{copula.parameter}{Copula parameter}
 \item{p}{Estimates of treatment effects}
 \item{Var}{Variance estimates}
-\item{c_simulated}{Critical value via simulation method}
-\item{c_analytical}{Critical value via analytical method}
+\item{F}{F-statistic}
+\item{c.simu}{Critical value via the simulation method}
+\item{c.anal}{Critical value via the analytical method}
+\item{P.value}{P-value of the F-test}
 }
 \references{
 Emura T, Ditzhaus M, Dobler D (2023-), Factorial survival analysis for treatment effects under dependent censoring, in preparation.
