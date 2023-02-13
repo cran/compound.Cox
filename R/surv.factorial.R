@@ -1,5 +1,5 @@
-surv.factorial=function(t.vec,d.vec,group,alpha,copula,R=1000,
-                    t.upper=min(tapply(t.vec,group,max)),
+surv.factorial=function(t.vec,d.vec,group,copula=CG.Clayton,alpha,
+                    R=1000,t.upper=min(tapply(t.vec,group,max)),
                     C=NULL,S.plot=TRUE,mark.time=FALSE){
 
   d=length(levels(factor(group)))

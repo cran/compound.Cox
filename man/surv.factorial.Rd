@@ -8,7 +8,7 @@ Factorial survival analysis under dependent censoring
 Perform factorial survival analysis under dependent censoring under an assumed copula (Emura et al. 2023-).
 }
 \usage{
-surv.factorial(t.vec,d.vec,group,alpha,copula,R=1000,t.upper=min(tapply(t.vec,group,max)),
+surv.factorial(t.vec,d.vec,group,copula,alpha,R=1000,t.upper=min(tapply(t.vec,group,max)),
 C=NULL,S.plot=TRUE,mark.time=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -16,8 +16,8 @@ C=NULL,S.plot=TRUE,mark.time=FALSE)
   \item{t.vec}{Vector of survival times (time to either death or censoring)}
   \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
   \item{group}{Vector of group indicators, 1, 2, ..., d}
-  \item{alpha}{Copula parameter}
   \item{copula}{Copula function: "CG.Clayton","CG.Gumbel" or "CG.Frank"}
+  \item{alpha}{Copula parameter}
   \item{R}{The number of Monte Carlo simulations to find the critical value of the F-test}
   \item{t.upper}{Follow-up end (default is max(t.vec))}
   \item{C}{Contrast matrix}

@@ -48,6 +48,14 @@ RMST.poor=Tau*mean(S.poor_grid)
 polygon(c(t_grid,rev(t_grid)),c(S.poor_grid,rev(S.good_grid)),
         density=40,col="thistle1",border=NA)
 
+legend("topright",legend="Good prognosis (PI <= c)",col="blue",
+       lty=1,lwd=2,pch=3,bg="transparent",bty="n")
+legend("bottomleft",legend="Poor prognosis (PI > c)",col="red",
+       lty=1,lwd=2,pch=3,bg="transparent",bty="n")
+legend("bottomright",legend=c("Kendall's tau = ",round(tau.good,2)),
+       bg="transparent",bty="n")
+
+
 #### Permutation test #####
 n.good=sum(PI<=cutoff)
 n.poor=sum(PI>cutoff)
@@ -76,6 +84,10 @@ for(j in 1:N){
 P_MD=mean( abs(MD.perm)>abs(MD) )
 
 abline(v=Tau,col=rgb(0,0,0, alpha=0.1),cex=2)
+legend("center",legend=c("P-value = ",P_MD),
+       bg="transparent",bty="n")
+
+
 list(test=c(Survival.diff=MD,RMSTD=Tau*MD,P.value=P_MD),
      Good=c(n=n.good,n.event=event.good,
             RMST=RMST.good,Kendall.tau=tau.good,meanPI=mean(PI[PI<=cutoff])),

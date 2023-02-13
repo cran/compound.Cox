@@ -25,7 +25,7 @@ copula=CG.Clayton,S.plot=TRUE,N=10000,mark.time=TRUE)
   \item{mark.time}{If TRUE, then curves are marked at each censoring time}
 }
 \details{
-Estimates of treatment effects and the test results are shown.
+Estimates of treatment effects and test results are shown.
 }
 \value{
 \item{test}{Testing the difference of two survival functions}
@@ -39,12 +39,19 @@ Copula-Based Approaches, JSS Research Series in Statistics, Springer, Singapore.
 Rivest LP, Wells MT (2001). A Martingale Approach to the Copula-graphic Estimator for the
 Survival Function under Dependent Censoring, J Multivar Anal; 79: 138-55.
 
-Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction with gene selection: a copula method for dependent censoring, under revision.
+Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction with gene selection: 
+a copula method for dependent censoring, under revision.
 }
 \author{Takeshi Emura}
 
 \examples{
-## to be written ##
+t.vec=c(1,3,5,4,7,8,10,13)
+d.vec=c(1,0,0,1,1,0,1,0)
+PI=c(1,2,3,4,5,6)
+PI=c(4,6,3,5,2,1)
+
+CG.test(t.vec,d.vec,PI,copula=CG.Clayton,alpha=18,N=100)
+CG.test(t.vec,d.vec,PI,copula=CG.Gumbel,alpha=9,N=100)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
