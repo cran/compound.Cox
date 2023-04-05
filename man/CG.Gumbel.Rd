@@ -21,10 +21,10 @@ CG.Gumbel(t.vec, d.vec, alpha, S.plot = TRUE, S.col = "black")
 \details{
 The CG estimator is a variant of the Kaplan-Meier estimator for a survival function. 
 The CG estimator relaxes the independent censoring assumption of the KM estimator through a copula-based dependent censoring model. 
-The computational formula of the CG estimator is given in Appendix D of Emura et al. (2019). 
+The computational formula of the CG estimator is given in Appendix D of Emura et al. (2019) or Section 3.2 of Yeh et al.(2023). 
 The output shows the survival probabilities at given time points of "t.vec". 
 The input requires to specify an association parameter "alpha" of the Gumbel copula (alpha>=0), where alpha=0 corresponds to the independence copula. 
-Emura and Chen (2016, 2018) applied the CG estimator to assess survival prognosis for lung cancer patients.
+Emura and Chen (2016, 2018) and Yeh et al.(2023) applied the CG estimator to assess survival prognosis for lung cancer patients.
 }
 \value{
 \item{tau }{Kendall's tau (=alpha/(alpha+1))}
@@ -44,6 +44,9 @@ Copula-Based Approaches, JSS Research Series in Statistics, Springer, Singapore.
 
 Rivest LP, Wells MT (2001). A Martingale Approach to the Copula-graphic Estimator for the 
 Survival Function under Dependent Censoring, J Multivar Anal; 79: 138-55.
+
+Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction 
+with gene selection: a copula method for dependent censoring, Biomedicines 11(3):797.
 }
 \author{Takeshi Emura}
 

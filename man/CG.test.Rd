@@ -25,7 +25,10 @@ copula=CG.Clayton,S.plot=TRUE,N=10000,mark.time=TRUE)
   \item{mark.time}{If TRUE, then curves are marked at each censoring time}
 }
 \details{
+Two-sample comparison based on estimated survival functions
+via copula-graphic estimators under dependent censoring.
 Estimates of treatment effects and test results are shown.
+See Ye et al.(2023) for details.
 }
 \value{
 \item{test}{Testing the difference of two survival functions}
@@ -39,8 +42,8 @@ Copula-Based Approaches, JSS Research Series in Statistics, Springer, Singapore.
 Rivest LP, Wells MT (2001). A Martingale Approach to the Copula-graphic Estimator for the
 Survival Function under Dependent Censoring, J Multivar Anal; 79: 138-55.
 
-Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction with gene selection: 
-a copula method for dependent censoring, under revision.
+Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction
+with gene selection: a copula method for dependent censoring, Biomedicines 11(3):797.
 }
 \author{Takeshi Emura}
 

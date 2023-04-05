@@ -11,13 +11,15 @@ Univariate feature selection and compound covariate methods under the Cox model 
  statistical methods in Emura et al (2012 PLoS ONE),
  Emura & Chen (2016 Stat Methods Med Res), and Emura et al. (2019 Comput Methods Programs Biomed).
  Algorithms for generating correlated gene expressions are also available.
+ Estimation of survival functions via copula-graphic (CG) estimators is also implemented, which is useful for
+ sensitivity analyses under dependent censoring (Yeh et al 2023 Biomedicines).
 }
 \details{
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.27\cr
-Date: \tab 2023-2-13\cr
+Version: \tab 3.28\cr
+Date: \tab 2023-4-5\cr
 License: \tab GPL-2\cr
 }
 }
@@ -39,5 +41,8 @@ Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection an
 Computer Methods and Programs in Biomedicine 168: 21-37
 
 Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.
+
+Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction 
+with gene selection: a copula method for dependent censoring, Biomedicines 11(3):797.
 }
 \keyword{ package }

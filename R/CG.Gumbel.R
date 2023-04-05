@@ -1,5 +1,7 @@
 CG.Gumbel <-
 function(t.vec,d.vec,alpha,S.plot=TRUE,S.col="black"){
+
+  alpha=max(alpha,0) ### negative alpha is not allowed ###
   n=length(t.vec)
   R=n:1
   t.sort=sort(t.vec)
