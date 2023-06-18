@@ -3,94 +3,101 @@ CG.test <-
            alpha=2,copula=CG.Clayton,
            S.plot=TRUE,N=10000,mark.time=TRUE){
 
-###### Plot two CG estimators #####
-temp=(PI<=cutoff)
-t.good=t.vec[temp]
-d.good=d.vec[temp]
-event.good=sum(d.good)
-res.good=copula(t.good,d.good,alpha,S.plot=F)
-S.good=res.good$surv
-tau.good=res.good$tau
+### Estimating survival for two groups ###
+CG.surv=function(t.vec,d.vec,PI,cutoff=median(PI),Plot=S.plot){
+  group=(PI<=cutoff) ## Good or poor group
 
-t.poor=t.vec[!temp]
-d.poor=d.vec[!temp]
-event.poor=sum(d.poor)
-res.poor=copula(t.poor,d.poor,alpha,S.plot=F)
-S.poor=res.poor$surv
-tau.poor=res.poor$tau
+  t.good=t.vec[group]
+  d.good=d.vec[group]
+  res.good=copula(t.good,d.good,alpha,S.plot=FALSE)
+  S.good=res.good$surv
 
-if(S.plot==TRUE){
-  plot(c(0,sort(t.good)),c(1,S.good),type="s",lwd=2,
-     xlim=c(0,max(t.vec)),ylim=c(0,1),
-     col="blue",ylab="Survival probability",xlab="Time")
-  points(c(0,sort(t.poor)),c(1,S.poor),type="s",lwd=2,col="red")
-  if(mark.time==TRUE){
-    points(sort(t.good[d.good==0]),
-         S.good[d.good[order(t.good)]==0],pch=3,cex=1,col="blue")
-    points(sort(t.poor[d.poor==0]),
-         S.poor[d.poor[order(t.poor)]==0],pch=3,cex=1,col="red")
+  t.poor=t.vec[!group]
+  d.poor=d.vec[!group]
+  res.poor=copula(t.poor,d.poor,alpha,S.plot=FALSE)
+  S.poor=res.poor$surv
+
+  Tau=min(max(t.poor),max(t.good)) ## Pepe & Fleming (1989, 1991)
+  t.Tau=sort(t.vec)[sort(t.vec)<=Tau]
+  M=sum(t.vec<=Tau)
+  group.o=group[order(t.vec)]
+
+  SS.good=SS.poor=1
+  for(i in 1:M){
+    if(group.o[i]==TRUE){
+      SS.good[i]=S.good[sum(group.o[1:i])]
+      SS.poor[i]=SS.poor[max(1,i-1)]
+    }else{
+      SS.poor[i]=S.poor[sum((!group.o)[1:i])]
+      SS.good[i]=SS.good[max(1,i-1)]
+    }
   }
+
+  RMS.good=sum( c(1,SS.good[1:(M-1)])*diff(c(0,t.Tau)) )
+  RMS.poor=sum( c(1,SS.poor[1:(M-1)])*diff(c(0,t.Tau)) )
+  L1=sum( c(0,abs(SS.good[1:(M-1)]-SS.poor[1:(M-1)]))*diff(c(0,t.Tau)) )
+
+  ### Plot survival functions ###
+  if(Plot==TRUE){
+    plot(c(0,sort(t.good)),c(1,S.good),type="s",lwd=2,
+         xlim=c(0,max(t.vec)),ylim=c(0,1),
+         col="blue",ylab="Survival probability",xlab="Time")
+    points(c(0,sort(t.poor)),c(1,S.poor),type="s",lwd=2,col="red")
+    if(mark.time==TRUE){
+      points(sort(t.good[d.good==0]),S.good[d.good[order(t.good)]==0],
+             pch=3,cex=1,col="blue")
+      points(sort(t.poor[d.poor==0]),S.poor[d.poor[order(t.poor)]==0],
+             pch=3,cex=1,col="red")
+    }
+
+    polygon(c(t.Tau,rev(t.Tau)),c(SS.poor,rev(SS.good)),
+            density=40,col="thistle1",border=NA)
+
+    legend("topright",legend="Good prognosis (PI <= c)",col="blue",
+           lty=1,lwd=2,pch=3,bg="transparent",bty="n")
+    legend("bottomleft",legend="Poor prognosis (PI > c)",col="red",
+           lty=1,lwd=2,pch=3,bg="transparent",bty="n")
+    legend("bottomright",legend=c("Kendall's tau = ",round(res.good$tau,2)),
+           bg="transparent",bty="n")
+  }
+
+  list(Tau=Tau,RMS.poor=RMS.poor,L1=L1,t.poor=res.poor$time,
+       d.poor=d.poor[order(t.poor)],S.poor=S.poor,
+       RMS.good=RMS.good,t.good=res.good$time,
+       d.good=d.good[order(t.good)],S.good=S.good)
 }
 
-
-### mean difference ###
-G=1000
-t_grid=S.good_grid=S.poor_grid=numeric(G)
-Tau=min(max(t.poor),max(t.good)) ## Pepe & Fleming (1989, 1991)
-t_grid=Tau*(1:G)/G
-for(i in 1:G){
-  S.good_grid[i]=c(1,S.good)[sum(c(0,t.good)<=t_grid[i])]
-  S.poor_grid[i]=c(1,S.poor)[sum(c(0,t.poor)<=t_grid[i])]
-}
-MD=mean(S.good_grid-S.poor_grid)
-RMST.good=Tau*mean(S.good_grid)
-RMST.poor=Tau*mean(S.poor_grid)
-polygon(c(t_grid,rev(t_grid)),c(S.poor_grid,rev(S.good_grid)),
-        density=40,col="thistle1",border=NA)
-
-legend("topright",legend="Good prognosis (PI <= c)",col="blue",
-       lty=1,lwd=2,pch=3,bg="transparent",bty="n")
-legend("bottomleft",legend="Poor prognosis (PI > c)",col="red",
-       lty=1,lwd=2,pch=3,bg="transparent",bty="n")
-legend("bottomright",legend=c("Kendall's tau = ",round(tau.good,2)),
-       bg="transparent",bty="n")
-
+fit=CG.surv(t.vec,d.vec,PI)
+RMSD=fit$RMS.good-fit$RMS.poor
+MD=RMSD/fit$Tau
+IntegratedL1=fit$L1
+ML1=fit$L1/fit$Tau
 
 #### Permutation test #####
-n.good=sum(PI<=cutoff)
-n.poor=sum(PI>cutoff)
-MD.perm=numeric(N)
+n=length(PI)
+MD.perm=ML1.perm=numeric(N)
 set.seed(1)
 
 for(j in 1:N){
-  perm=sample(size=n.good,1:(n.good+n.poor),replace=FALSE)
-  t.good=t.vec[perm]
-  d.good=d.vec[perm]
-  S.good=copula(t.good,d.good,alpha,S.plot=F)$surv
-
-  t.poor=t.vec[-perm]
-  d.poor=d.vec[-perm]
-  S.poor=copula(t.poor,d.poor,alpha,S.plot=F)$surv
-
-  t_grid=S.good_grid=S.poor_grid=numeric(G)
-  Tau_perm=min(max(t.poor),max(t.good))
-  t_grid=Tau_perm*(1:G)/G
-  for(i in 1:G){
-    S.good_grid[i]=c(1,S.good)[sum(c(0,t.good)<=t_grid[i])]
-    S.poor_grid[i]=c(1,S.poor)[sum(c(0,t.poor)<=t_grid[i])]
-  }
-  MD.perm[j]=mean(S.good_grid-S.poor_grid)
+  perm=sample(size=n,1:n,replace=FALSE) #permutation
+  fit.perm=CG.surv(t.vec,d.vec,PI[perm],Plot=FALSE)
+  RMSD.perm=fit.perm$RMS.good-fit.perm$RMS.poor
+  MD.perm[j]=RMSD.perm/fit.perm$Tau
+  ML1.perm[j]=fit.perm$L1/fit.perm$Tau
 }
 P_MD=mean( abs(MD.perm)>abs(MD) )
+P_L1=mean( ML1.perm>ML1 )
 
-abline(v=Tau,col=rgb(0,0,0, alpha=0.1),cex=2)
+abline(v=fit$Tau,col=rgb(0,0,0, alpha=0.1),cex=2)
 legend("center",legend=c("P-value = ",P_MD),
-       bg="transparent",bty="n")
+        bg="transparent",bty="n")
 
-
-list(test=c(Survival.diff=MD,RMSTD=Tau*MD,P.value=P_MD),
-     Good=c(n=n.good,n.event=event.good,
-            RMST=RMST.good,Kendall.tau=tau.good,meanPI=mean(PI[PI<=cutoff])),
-     Poor=c(n=n.poor,n.event=event.poor,
-            RMST=RMST.poor,Kendall.tau=tau.poor,meanPI=mean(PI[PI>cutoff])))
+list(test=c(Survival.diff=MD,RMSTD=fit$Tau*MD,P.value=P_MD),
+     L1.test=c(L1.distance=ML1,Integrated.L1=IntegratedL1,P.value=P_L1),
+     Good=c(n=sum(PI<=cutoff),n.event=sum(d.vec[PI<=cutoff]),
+            RMST=fit$RMS.good,meanPI=mean(PI[PI<=cutoff])),
+     Poor=c(n=sum(PI>cutoff),n.event=sum(d.vec[PI>cutoff]),
+            RMST=fit$RMS.poor,meanPI=mean(PI[PI>cutoff])))
 }
+
+

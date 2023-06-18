@@ -18,8 +18,8 @@ Univariate feature selection and compound covariate methods under the Cox model 
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.28\cr
-Date: \tab 2023-4-5\cr
+Version: \tab 3.29\cr
+Date: \tab 2023-6-18\cr
 License: \tab GPL-2\cr
 }
 }
@@ -42,7 +42,7 @@ Computer Methods and Programs in Biomedicine 168: 21-37
 
 Matsui S (2006). Predicting Survival Outcomes Using Subsets of Significant Genes in Prognostic Marker Studies with Microarrays. BMC Bioinformatics: 7:156.
 
-Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction 
+Yeh CT, Liao GY, Emura T (2023). Sensitivity analysis for survival prognostic prediction
 with gene selection: a copula method for dependent censoring, Biomedicines 11(3):797.
 }
 \keyword{ package }
