@@ -30,7 +30,7 @@ via copula-graphic estimators under dependent censoring.
 The D statistic (the mean vertical difference betewen two
 estimated survival functions) is used for testing the null
 hypothesis of no difference in survival.
-See Ye et al.(2023) for details.
+See Yeh et al.(2023) for details.
 }
 \value{
 \item{test}{Testing the difference of two survival functions}

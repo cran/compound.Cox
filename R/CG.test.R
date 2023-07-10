@@ -4,7 +4,8 @@ CG.test <-
            S.plot=TRUE,N=10000,mark.time=TRUE){
 
 ### Estimating survival for two groups ###
-CG.surv=function(t.vec,d.vec,PI,cutoff=median(PI),Plot=S.plot){
+CG.surv=function(t.vec,d.vec,PI,
+                 cutoff=median(PI),Plot=S.plot){
   group=(PI<=cutoff) ## Good or poor group
 
   t.good=t.vec[group]
@@ -59,6 +60,8 @@ CG.surv=function(t.vec,d.vec,PI,cutoff=median(PI),Plot=S.plot){
            lty=1,lwd=2,pch=3,bg="transparent",bty="n")
     legend("bottomright",legend=c("Kendall's tau = ",round(res.good$tau,2)),
            bg="transparent",bty="n")
+    abline(v=Tau,col=rgb(0,0,0, alpha=0.1),cex=2)
+
   }
 
   list(Tau=Tau,RMS.poor=RMS.poor,L1=L1,t.poor=res.poor$time,
@@ -67,7 +70,7 @@ CG.surv=function(t.vec,d.vec,PI,cutoff=median(PI),Plot=S.plot){
        d.good=d.good[order(t.good)],S.good=S.good)
 }
 
-fit=CG.surv(t.vec,d.vec,PI)
+fit=CG.surv(t.vec,d.vec,PI,cutoff=cutoff)
 RMSD=fit$RMS.good-fit$RMS.poor
 MD=RMSD/fit$Tau
 IntegratedL1=fit$L1
@@ -80,7 +83,8 @@ set.seed(1)
 
 for(j in 1:N){
   perm=sample(size=n,1:n,replace=FALSE) #permutation
-  fit.perm=CG.surv(t.vec,d.vec,PI[perm],Plot=FALSE)
+  fit.perm=CG.surv(t.vec,d.vec,PI[perm],
+                   cutoff=cutoff,Plot=FALSE)
   RMSD.perm=fit.perm$RMS.good-fit.perm$RMS.poor
   MD.perm[j]=RMSD.perm/fit.perm$Tau
   ML1.perm[j]=fit.perm$L1/fit.perm$Tau
@@ -88,9 +92,10 @@ for(j in 1:N){
 P_MD=mean( abs(MD.perm)>abs(MD) )
 P_L1=mean( ML1.perm>ML1 )
 
-abline(v=fit$Tau,col=rgb(0,0,0, alpha=0.1),cex=2)
-legend("center",legend=c("P-value = ",P_MD),
-        bg="transparent",bty="n")
+if(S.plot==TRUE){
+  legend("center",legend=c("P-value = ",P_MD),
+       bg="transparent",bty="n")
+}
 
 list(test=c(Survival.diff=MD,RMSTD=fit$Tau*MD,P.value=P_MD),
      L1.test=c(L1.distance=ML1,Integrated.L1=IntegratedL1,P.value=P_L1),
