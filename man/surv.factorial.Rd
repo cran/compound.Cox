@@ -5,7 +5,7 @@
 Factorial survival analysis under dependent censoring
 }
 \description{
-Perform factorial survival analysis under dependent censoring under an assumed copula (Emura et al. 2023-).
+Perform factorial survival analysis under dependent censoring under an assumed copula (Emura et al. 2024).
 }
 \usage{
 surv.factorial(t.vec,d.vec,group,copula,alpha,R=1000,t.upper=min(tapply(t.vec,group,max)),
@@ -37,21 +37,29 @@ Estimates of treatment effects and the test results are shown.
 \item{P.value}{P-value of the F-test}
 }
 \references{
-Emura T, Ditzhaus M, Dobler D (2023-), Factorial survival analysis for treatment effects under dependent censoring, in preparation.
-
-Emura T, Matsui S, Chen HY (2019). compound.Cox: Univariate Feature Selection and Compound Covariate for Predicting Survival,
-Computer Methods and Programs in Biomedicine 168: 21-37.
-
-Emura T, Chen YH (2018). Analysis of Survival Data with Dependent Censoring,
-Copula-Based Approaches, JSS Research Series in Statistics, Springer, Singapore.
-
-Rivest LP, Wells MT (2001). A Martingale Approach to the Copula-graphic Estimator for the
-Survival Function under Dependent Censoring, J Multivar Anal; 79: 138-55.
+Emura T, Ditzhaus M, Dobler D, Murotani K (2024), Factorial survival analysis for treatment effects under dependent censoring, Stat Methods Med Res 33(1):61-79.
 }
 \author{Takeshi Emura}
 
 \examples{
-## to be written ##
+
+library(survival)
+data(cancer)
+dat=subset(colon,etype==1)
+## Treatment effects ##
+t.vec=dat$time
+d.vec=dat$status
+trt=dat$rx
+C12=matrix(c(1,-1,0),1,3,byrow=TRUE)
+C13=matrix(c(1,0,-1),1,3,byrow=TRUE)
+C23=matrix(c(0,1,-1),1,3,byrow=TRUE)
+group=as.numeric(trt) # 1=Obs; 2=Lev; 3=Lev+5FU
+# surv.factorial(t.vec,d.vec,group,alpha=2,copula=CG.Clayton)
+# surv.factorial(t.vec,d.vec,group,alpha=2,copula=CG.Clayton,C=C12)
+# surv.factorial(t.vec,d.vec,group,alpha=2,copula=CG.Clayton,C=C13)
+# surv.factorial(t.vec,d.vec,group,alpha=2,copula=CG.Clayton,C=C23)
+# alpha is a copula parameter
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
