@@ -64,7 +64,7 @@ surv.factorial=function(t.vec,d.vec,group,copula=CG.Clayton,alpha,
     text(0.95*t.upper,0.01,expression(tau))
   }
 
-  ### ANOVA test ###
+  ### F-test ###
   if(is.null(C)){  C=diag(rep(1,d))-rep(1,d)%*%t(rep(1,d))/d  }
   T.mat=t(C)%*%ginv(C%*%t(C))%*%C
   TV=N*T.mat%*%jvar
@@ -83,7 +83,7 @@ surv.factorial=function(t.vec,d.vec,group,copula=CG.Clayton,alpha,
         "0.01"=qchisq(1-0.01,df=df)/df)
 
   P.value=c("simu"=mean(Q.simu>F.test),
-            "anal"=1-pchisq(F.test/df,df=df))
+            "anal"=1-pchisq(F.test*df,df=df))
 
   p.res=cbind(estimate=p.CG,se=SE,lower=Lower,upper=Upper,P)
   list(copula.parameter=alpha,p=p.res,Var=jvar,F=F.test,

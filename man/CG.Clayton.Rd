@@ -15,8 +15,8 @@ CG.Clayton(t.vec, d.vec, alpha, S.plot = TRUE, S.col = "black")
   \item{t.vec}{Vector of survival times (time to either death or censoring)}
   \item{d.vec}{Vector of censoring indicators, 1=death, 0=censoring}
   \item{alpha}{Association parameter that is related to Kendall's tau through "tau= alpha/(alpha+2)"}
-  \item{S.plot}{If TRUE, the survival curve is displayed}
-  \item{S.col}{Color of the survival curve in the plot}
+  \item{S.plot}{If TRUE, the survival function is displayed}
+  \item{S.col}{Color of the survival function in the plot}
 }
 \details{
 The CG estimator is a variant of the Kaplan-Meier estimator for a survival function.

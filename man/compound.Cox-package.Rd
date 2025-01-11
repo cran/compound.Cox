@@ -19,8 +19,8 @@ Univariate feature selection and compound covariate methods under the Cox model 
 \tabular{ll}{
 Package: \tab compound.Cox\cr
 Type: \tab Package\cr
-Version: \tab 3.31\cr
-Date: \tab 2024-10-05\cr
+Version: \tab 3.32\cr
+Date: \tab 2025-1-11\cr
 License: \tab GPL-2\cr
 }
 }

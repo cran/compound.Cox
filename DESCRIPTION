@@ -3,8 +3,8 @@ Type: Package
 Title: Univariate Feature Selection and Compound Covariate for
         Predicting Survival, Including Copula-Based Analyses for
         Dependent Censoring
-Version: 3.31
-Date: 2024-10-05
+Version: 3.32
+Date: 2025-1-11
 Authors@R: c(person(given = "Takeshi",
                         family = "Emura",
                         role = c("aut", "cre"),
@@ -32,10 +32,10 @@ Depends: numDeriv, survival, MASS
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2024-10-05 02:46:03 UTC; takes
+Packaged: 2025-01-11 04:25:45 UTC; takes
 Author: Takeshi Emura [aut, cre],
   Hsuan-Yu Chen [aut],
   Shigeyuki Matsui [aut],
   Yi-Hau Chen [aut]
 Repository: CRAN
-Date/Publication: 2024-10-05 07:30:02 UTC
+Date/Publication: 2025-01-11 06:00:06 UTC
